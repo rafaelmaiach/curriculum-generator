@@ -1,0 +1,25 @@
+# Dependency directories
+node_modules
+
+# Environment config
+.env
+
+# Editors
+.vscode
+
+#dist
+dist/*.html
+dist/*.eot
+dist/*.png
+dist/*.jpg
+dist/*.jpeg
+dist/*.gif
+dist/*.svg
+dist/*.woff2
+dist/*.ttf
+dist/*.woff
+dist/*.js
+dist/*.jsx
+dist/*.gz
+dist/*.css
+dist/*.scss

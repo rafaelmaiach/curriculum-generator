@@ -1,0 +1,81 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "codeFrame": false
+  },
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true,
+        "optionalDependencies": false,
+        "peerDependencies": false
+      }
+    ],
+    "require-jsdoc": [
+      "error",
+      {
+        "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": true,
+          "ClassDeclaration": true
+        }
+      }
+    ],
+    "require-await": "error",
+    "valid-jsdoc": [
+      "error",
+      {
+        "requireReturn": false
+      }
+    ],
+    "object-property-newline": "error",
+    "object-curly-newline": "error",
+    "no-trailing-spaces": "error",
+    "max-params": [
+      "error",
+      3
+    ],
+    "no-this-before-super": "error",
+    "no-unreachable": "error",
+    "constructor-super": "error",
+    "valid-typeof": "error",
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 80,
+        "ignorePattern": "(^\\s*const\\s.+=\\s*require\\s*\\([A-Za-z0-9\\/.']+\\))|(import\\x20([A-Za-z0-9]+)\\x20from\\x20[A-Za-z0-9\\/.']+)",
+        "ignoreUrls": true,
+        "ignoreTrailingComments": true,
+        "ignoreComments": true,
+        "ignoreRegExpLiterals": true
+      }
+    ]
+  }
+}

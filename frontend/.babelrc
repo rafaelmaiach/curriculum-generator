@@ -1,0 +1,18 @@
+{
+  "presets": [
+    "env",
+    "stage-2",
+    "react",
+    "airbnb",
+    [
+      "es2015",
+      {
+        "modules": false
+      }
+    ]
+  ],
+  "plugins": [
+    "react-hot-loader/babel",
+    "transform-class-properties"
+  ]
+}

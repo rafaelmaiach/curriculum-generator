@@ -1,0 +1,81 @@
+{
+  "name": "curriculum-generator",
+  "version": "1.0.0",
+  "description": "Curriculum Generator using React and Apache POI (Java)",
+  "main": "index.js",
+  "private": false,
+  "scripts": {
+    "prod-start": "npm run build && cross-env NODE_ENV=production node --optimize_for_size --max_old_space_size=460 --gc_interval=100 server/app.js",
+    "dev-start": "cross-env NODE_ENV=development nodemon server/app.js",
+    "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.js --progress --colors",
+    "dev-build": "cross-env NODE_ENV=development webpack --config ./webpack.config.js --progress --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafamaiach/curriculum-generator.git"
+  },
+  "keywords": [
+    "react",
+    "webpack",
+    "babel"
+  ],
+  "author": "Rafael Maia Chieregatto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rafamaiach/curriculum-generator/issues"
+  },
+  "homepage": "https://github.com/rafamaiach/curriculum-generator#readme",
+  "dependencies": {
+    "babel-runtime": "6.26.0",
+    "body-parser": "1.18.2",
+    "compression": "1.7.2",
+    "cross-env": "5.1.4",
+    "express": "4.16.3",
+    "prop-types": "15.6.1",
+    "react": "16.2.0",
+    "react-dom": "16.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.0",
+    "babel-eslint": "8.2.2",
+    "babel-loader": "7.1.4",
+    "babel-minify-webpack-plugin": "0.3.1",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-runtime": "6.23.0",
+    "babel-preset-airbnb": "2.4.0",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-react": "6.24.1",
+    "babel-preset-stage-2": "6.24.1",
+    "clean-webpack-plugin": "0.1.19",
+    "compression-webpack-plugin": "1.1.11",
+    "css-hot-loader": "1.3.8",
+    "css-loader": "0.28.11",
+    "eslint": "4.19.1",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-plugin-import": "2.9.0",
+    "eslint-plugin-jsx-a11y": "6.0.3",
+    "eslint-plugin-react": "7.7.0",
+    "extract-text-webpack-plugin": "3.0.2",
+    "file-loader": "1.1.11",
+    "html-loader": "0.5.5",
+    "html-webpack-plugin": "3.1.0",
+    "image-webpack-loader": "4.2.0",
+    "node-sass": "4.7.2",
+    "nodemon": "1.17.2",
+    "react-hot-loader": "4.0.0",
+    "sass-loader": "6.0.7",
+    "style-loader": "0.20.3",
+    "uglifyjs-webpack-plugin": "1.2.4",
+    "webpack": "3.11.0",
+    "webpack-dev-middleware": "2.0.6",
+    "webpack-hot-middleware": "2.21.2",
+    "webpack-merge": "4.1.2"
+  },
+  "engine-strict": true,
+  "engines": {
+    "node": "9.x.x",
+    "npm": "5.x.x"
+  }
+}
