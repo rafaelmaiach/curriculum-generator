@@ -5,10 +5,10 @@
   "main": "index.js",
   "private": false,
   "scripts": {
-    "prod-start": "npm run build && cross-env NODE_ENV=production node --optimize_for_size --max_old_space_size=460 --gc_interval=100 server/app.js",
-    "dev-start": "cross-env NODE_ENV=development nodemon server/app.js",
-    "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.js --progress --colors",
-    "dev-build": "cross-env NODE_ENV=development webpack --config ./webpack.config.js --progress --colors"
+    "prod-start": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 server/app.js",
+    "dev-start": "nodemon server/app.js",
+    "build": "webpack --config ./webpack.config.js --progress --colors",
+    "dev-build": "webpack --config ./webpack.config.js --progress --colors"
   },
   "repository": {
     "type": "git",
@@ -37,8 +37,8 @@
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
-    "babel-core": "6.26.0",
-    "babel-eslint": "8.2.2",
+    "babel-core": "6.26.2",
+    "babel-eslint": "8.2.3",
     "babel-loader": "7.1.4",
     "babel-minify-webpack-plugin": "0.3.1",
     "babel-plugin-transform-class-properties": "6.24.1",
@@ -54,7 +54,7 @@
     "css-loader": "0.28.11",
     "eslint": "4.19.1",
     "eslint-config-airbnb": "16.1.0",
-    "eslint-plugin-import": "2.9.0",
+    "eslint-plugin-import": "2.11.0",
     "eslint-plugin-jsx-a11y": "6.0.3",
     "eslint-plugin-react": "7.7.0",
     "extract-text-webpack-plugin": "3.0.2",
@@ -63,7 +63,7 @@
     "html-webpack-plugin": "3.1.0",
     "image-webpack-loader": "4.2.0",
     "node-sass": "4.7.2",
-    "nodemon": "1.17.2",
+    "nodemon": "1.17.3",
     "react-hot-loader": "4.0.0",
     "sass-loader": "6.0.7",
     "style-loader": "0.20.3",
