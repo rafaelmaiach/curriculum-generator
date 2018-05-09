@@ -10,5 +10,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="poi-3.17" level="project" />
     <orderEntry type="library" name="curvesapi-1.04" level="project" />
+    <orderEntry type="library" name="jackson-annotations-2.9.5" level="project" />
   </component>
 </module>
