@@ -202,7 +202,9 @@ public class CurriculumModel1 extends GenerateCurriculum {
         //Add TAB character
         formationTitle.addTab();
 
-        for (Formation formation : formations) {
+        for (int i = 0; i < formations.size(); i++) {
+            Formation formation = formations.get(i);
+
             //Add first formation
             XWPFRun formationText = formationParagraph.createRun();
             formationText.setFontFamily("Arial");
@@ -225,6 +227,7 @@ public class CurriculumModel1 extends GenerateCurriculum {
             formationInstitutionText.setItalic(true);
             formationInstitutionText.setBold(true);
             formationInstitutionText.setText(formation.getInstitution());
+            formationInstitutionText.setText(", ");
 
             XWPFRun formationLocationText = formationParagraph.createRun();
             formationLocationText.setFontFamily("Arial");
@@ -232,8 +235,10 @@ public class CurriculumModel1 extends GenerateCurriculum {
             formationLocationText.setItalic(true);
             formationLocationText.setText(formation.getLocation());
 
-            formationLocationText.addBreak();
-            formationLocationText.addBreak();
+            if (formations.size() != i + 1) {
+                formationLocationText.addBreak();
+                formationLocationText.addBreak();
+            }
         }
 
         this.addLineSeparator(document);
