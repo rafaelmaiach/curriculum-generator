@@ -51,33 +51,45 @@ public class CurriculumModel1 extends GenerateCurriculum {
         cityStateCountryText.setText(", ");
         cityStateCountryText.setText(curriculum.getUser().getCountry());
 
-        //Cellphone
-        XWPFRun cellphoneText = header.createParagraph().createRun();
-        cellphoneText.setFontFamily("Arial");
-        cellphoneText.setFontSize(10);
-        cellphoneText.setText("Celular: ");
-        cellphoneText.setText(curriculum.getUser().getContact().getCellPhone());
+        String cellphone = curriculum.getUser().getContact().getCellPhone();
+        if (!(cellphone == null || cellphone.isEmpty())) {
+            //Cellphone
+            XWPFRun cellphoneText = header.createParagraph().createRun();
+            cellphoneText.setFontFamily("Arial");
+            cellphoneText.setFontSize(10);
+            cellphoneText.setText("Celular: ");
+            cellphoneText.setText(curriculum.getUser().getContact().getCellPhone());
+        }
 
-        //Cellphone
-        XWPFRun emailText = header.createParagraph().createRun();
-        emailText.setFontFamily("Arial");
-        emailText.setFontSize(10);
-        emailText.setText("E-mail: ");
-        emailText.setText(curriculum.getUser().getContact().getEmail());
+        String email = curriculum.getUser().getContact().getEmail();
+        if (!(email == null || email.isEmpty())) {
+            //Email
+            XWPFRun emailText = header.createParagraph().createRun();
+            emailText.setFontFamily("Arial");
+            emailText.setFontSize(10);
+            emailText.setText("E-mail: ");
+            emailText.setText(curriculum.getUser().getContact().getEmail());
+        }
 
-        //GitHub
-        XWPFRun githubText = header.createParagraph().createRun();
-        githubText.setFontFamily("Arial");
-        githubText.setFontSize(10);
-        githubText.setText("GitHub: ");
-        githubText.setText(curriculum.getUser().getContact().getGithub());
+        String github = curriculum.getUser().getContact().getGithub();
+        if (!(github == null || github.isEmpty())) {
+            //GitHub
+            XWPFRun githubText = header.createParagraph().createRun();
+            githubText.setFontFamily("Arial");
+            githubText.setFontSize(10);
+            githubText.setText("GitHub: ");
+            githubText.setText(curriculum.getUser().getContact().getGithub());
+        }
 
-        //LinkedIn
-        XWPFRun linkedInText = header.createParagraph().createRun();
-        linkedInText.setFontFamily("Arial");
-        linkedInText.setFontSize(10);
-        linkedInText.setText("LinkedIn: ");
-        linkedInText.setText(curriculum.getUser().getContact().getLinkedin());
+        String linkedin = curriculum.getUser().getContact().getLinkedin();
+        if (!(linkedin == null || linkedin.isEmpty())) {
+            //LinkedIn
+            XWPFRun linkedInText = header.createParagraph().createRun();
+            linkedInText.setFontFamily("Arial");
+            linkedInText.setFontSize(10);
+            linkedInText.setText("LinkedIn: ");
+            linkedInText.setText(curriculum.getUser().getContact().getLinkedin());
+        }
 
         //Separator
         this.addLineSeparator(document);
@@ -271,7 +283,7 @@ public class CurriculumModel1 extends GenerateCurriculum {
             XWPFRun languageProeficiencyText = languageParagraph.createRun();
             languageProeficiencyText.setFontFamily("Arial");
             languageProeficiencyText.setFontSize(10);
-            languageProeficiencyText.setText(language.getLanguageProeficiency().name());
+            languageProeficiencyText.setText(language.getLanguageProeficiency().toString());
             languageProeficiencyText.addBreak();
         }
     }

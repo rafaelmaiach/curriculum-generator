@@ -17,4 +17,20 @@ public enum LanguageProeficiency {
     public void setLanguageProeficiency(int languageProeficiency) {
         this.languageProeficiency = languageProeficiency;
     }
+
+    @Override
+    public String toString() {
+        switch (this) {
+            case BASIC:
+                return "Básico";
+            case FLUENT:
+                return "Fluente";
+            case ADVANCED:
+                return "Avançado";
+            case INTERMEDIARY:
+                return "Intermediário";
+        }
+
+        return "";
+    }
 }
