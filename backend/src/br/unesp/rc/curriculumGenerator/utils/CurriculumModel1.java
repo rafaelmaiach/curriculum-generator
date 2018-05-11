@@ -1,16 +1,16 @@
 package br.unesp.rc.curriculumGenerator.utils;
 
+import br.unesp.rc.curriculumGenerator.model.*;
 import org.apache.poi.wp.usermodel.HeaderFooterType;
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 public class CurriculumModel1 extends GenerateCurriculum {
     @Override
-    protected void createDocumentHeader(XWPFDocument document) {
+    protected void createDocumentHeader(XWPFDocument document, Curriculum curriculum) {
         //Create the table that has the name inside the header
         XWPFHeader header = document.createHeader(HeaderFooterType.FIRST);
         XWPFTable headerTable = header.createTable(1, 1);
@@ -36,7 +36,7 @@ public class CurriculumModel1 extends GenerateCurriculum {
         nameLine.setFontFamily("Arial");
         nameLine.setFontSize(12);
         nameLine.setBold(true);
-        nameLine.setText("Nome Sobrenome");
+        nameLine.setText(curriculum.getUser().getName());
 
         //Contact information
         header.createParagraph();
@@ -45,55 +45,55 @@ public class CurriculumModel1 extends GenerateCurriculum {
         XWPFRun cityStateCountryText = header.createParagraph().createRun();
         cityStateCountryText.setFontFamily("Arial");
         cityStateCountryText.setFontSize(10);
-        cityStateCountryText.setText("Cidade");
+        cityStateCountryText.setText(curriculum.getUser().getCity());
         cityStateCountryText.setText(", ");
-        cityStateCountryText.setText("Estado");
+        cityStateCountryText.setText(curriculum.getUser().getState());
         cityStateCountryText.setText(", ");
-        cityStateCountryText.setText("País");
+        cityStateCountryText.setText(curriculum.getUser().getCountry());
 
         //Cellphone
         XWPFRun cellphoneText = header.createParagraph().createRun();
         cellphoneText.setFontFamily("Arial");
         cellphoneText.setFontSize(10);
         cellphoneText.setText("Celular: ");
-        cellphoneText.setText("+55 19 1234-5678");
+        cellphoneText.setText(curriculum.getUser().getContact().getCellPhone());
 
         //Cellphone
         XWPFRun emailText = header.createParagraph().createRun();
         emailText.setFontFamily("Arial");
         emailText.setFontSize(10);
         emailText.setText("E-mail: ");
-        emailText.setText("email@hotmail.com");
+        emailText.setText(curriculum.getUser().getContact().getEmail());
 
         //GitHub
         XWPFRun githubText = header.createParagraph().createRun();
         githubText.setFontFamily("Arial");
         githubText.setFontSize(10);
         githubText.setText("GitHub: ");
-        githubText.setText("https://github.com/username");
+        githubText.setText(curriculum.getUser().getContact().getGithub());
 
         //LinkedIn
         XWPFRun linkedInText = header.createParagraph().createRun();
         linkedInText.setFontFamily("Arial");
         linkedInText.setFontSize(10);
         linkedInText.setText("LinkedIn: ");
-        linkedInText.setText("https://www.linkedin.com/in/username");
+        linkedInText.setText(curriculum.getUser().getContact().getLinkedin());
 
         //Separator
         this.addLineSeparator(document);
     }
 
     @Override
-    protected void createDocumentContent(XWPFDocument document) {
-        createObjectiveSection(document);
-        createSummarySection(document);
-        createAbilitySection(document);
-        createFormationSection(document);
-        createLanguagesSection(document);
-        createExperienceSection(document);
+    protected void createDocumentContent(XWPFDocument document, Curriculum curriculum) {
+        createObjectiveSection(document, curriculum);
+        createSummarySection(document, curriculum);
+        createAbilitySection(document, curriculum);
+        createFormationSection(document, curriculum);
+        createLanguagesSection(document, curriculum);
+        createExperienceSection(document, curriculum);
     }
 
-    private void createObjectiveSection(XWPFDocument document) {
+    private void createObjectiveSection(XWPFDocument document, Curriculum curriculum) {
         document.createParagraph();
 
         XWPFParagraph objectiveParagraph = document.createParagraph();
@@ -110,13 +110,13 @@ public class CurriculumModel1 extends GenerateCurriculum {
         XWPFRun objectiveText = objectiveParagraph.createRun();
         objectiveText.setFontFamily("Arial");
         objectiveText.setFontSize(10);
-        objectiveText.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum.");
+        objectiveText.setText(curriculum.getObjective());
 
         //Separator
         this.addLineSeparator(document);
     }
 
-    private void createSummarySection(XWPFDocument document) {
+    private void createSummarySection(XWPFDocument document, Curriculum curriculum) {
         document.createParagraph();
 
         XWPFParagraph summaryParagraph = document.createParagraph();
@@ -136,20 +136,15 @@ public class CurriculumModel1 extends GenerateCurriculum {
         summaryText.setFontFamily("Arial");
         summaryText.setFontSize(10);
 
-        summaryText.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum.");
-        summaryText.addBreak();
-        summaryText.addBreak();
-        summaryText.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum.");
-        summaryText.addBreak();
-        summaryText.addBreak();
-        summaryText.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum.");
+        summaryText.setText(curriculum.getSummary());
 
         //Separator
         this.addLineSeparator(document);
     }
 
-    private void createAbilitySection(XWPFDocument document) {
+    private void createAbilitySection(XWPFDocument document, Curriculum curriculum) {
         document.createParagraph();
+        List<Ability> abilities = curriculum.getAbilities();
 
         XWPFParagraph abilityParagraph = document.createParagraph();
         abilityParagraph.setIndentationLeft(191 * 5);
@@ -161,18 +156,11 @@ public class CurriculumModel1 extends GenerateCurriculum {
         abilityText.setBold(true);
         abilityText.setText("Habilidades");
 
-        //Create list
-        ArrayList<String> documentList = new ArrayList<String>(
-                Arrays.asList(
-                        new String[]{
-                                "Habilidade 1",
-                                "Habilidade 2",
-                                "Habilidade 3"
-                        }));
-
+        //Creates list of Abilities at document
         CTAbstractNum cTAbstractNum = CTAbstractNum.Factory.newInstance();
         cTAbstractNum.setAbstractNumId(BigInteger.valueOf(0));
 
+        //Set list style as "DECIMAL"
         CTLvl cTLvl = cTAbstractNum.addNewLvl();
         cTLvl.addNewNumFmt().setVal(STNumberFormat.DECIMAL);
         cTLvl.addNewLvlText().setVal("%1.");
@@ -183,26 +171,29 @@ public class CurriculumModel1 extends GenerateCurriculum {
         BigInteger abstractNumID = numbering.addAbstractNum(abstractNum);
         BigInteger numID = numbering.addNum(abstractNumID);
 
-        for (String string : documentList) {
+        //Adds all abilities at the list
+        for (Ability ability : abilities) {
             XWPFParagraph paragraph = document.createParagraph();
             paragraph.setIndentationLeft(250 * 5);
             paragraph.setNumID(numID);
             XWPFRun run = paragraph.createRun();
             run.setFontFamily("Arial");
             run.setFontSize(10);
-            run.setText(string);
+            run.setText(ability.getName());
         }
 
         //Separator
         this.addLineSeparator(document);
     }
 
-    private void createFormationSection(XWPFDocument document) {
+    private void createFormationSection(XWPFDocument document, Curriculum curriculum) {
         document.createParagraph();
+        List<Formation> formations = curriculum.getFormations();
 
         XWPFParagraph formationParagraph = document.createParagraph();
         formationParagraph.setIndentationLeft(249 * 5);
         formationParagraph.setIndentationFirstLine(-249 * 5);
+
         XWPFRun formationTitle = formationParagraph.createRun();
         formationTitle.setFontFamily("Arial");
         formationTitle.setFontSize(11);
@@ -211,73 +202,46 @@ public class CurriculumModel1 extends GenerateCurriculum {
         //Add TAB character
         formationTitle.addTab();
 
-        //Add first formation
-        XWPFRun formationText = formationParagraph.createRun();
-        formationText.setFontFamily("Arial");
-        formationText.setFontSize(10);
-        formationText.setBold(true);
-        formationText.setText("Bacharelado em Ciências da Computação");
+        for (Formation formation : formations) {
+            //Add first formation
+            XWPFRun formationText = formationParagraph.createRun();
+            formationText.setFontFamily("Arial");
+            formationText.setFontSize(10);
+            formationText.setBold(true);
+            formationText.setText(formation.getName());
 
-        XWPFRun formationDateText = formationParagraph.createRun();
-        formationDateText.setFontFamily("Arial");
-        formationDateText.setFontSize(10);
-        formationDateText.setItalic(true);
-        formationDateText.setText(" - (2014 – Julho/2018)");
-        //Next line
-        formationDateText.addBreak();
+            XWPFRun formationDateText = formationParagraph.createRun();
+            formationDateText.setFontFamily("Arial");
+            formationDateText.setFontSize(10);
+            formationDateText.setItalic(true);
+            formationDateText.setText(" - (" + formation.getStartDate() + " – " + formation.getFinalDate() + ")");
+            //Next line
+            formationDateText.addBreak();
 
-        //Institution
-        XWPFRun formationInstitutionText = formationParagraph.createRun();
-        formationInstitutionText.setFontFamily("Arial");
-        formationInstitutionText.setFontSize(10);
-        formationInstitutionText.setItalic(true);
-        formationInstitutionText.setBold(true);
-        formationInstitutionText.setText("UNESP, ");
+            //Institution
+            XWPFRun formationInstitutionText = formationParagraph.createRun();
+            formationInstitutionText.setFontFamily("Arial");
+            formationInstitutionText.setFontSize(10);
+            formationInstitutionText.setItalic(true);
+            formationInstitutionText.setBold(true);
+            formationInstitutionText.setText(formation.getInstitution());
 
-        XWPFRun formationLocationText = formationParagraph.createRun();
-        formationLocationText.setFontFamily("Arial");
-        formationLocationText.setFontSize(10);
-        formationLocationText.setItalic(true);
-        formationLocationText.setText("Rio Claro, São Paulo.");
+            XWPFRun formationLocationText = formationParagraph.createRun();
+            formationLocationText.setFontFamily("Arial");
+            formationLocationText.setFontSize(10);
+            formationLocationText.setItalic(true);
+            formationLocationText.setText(formation.getLocation());
 
-        formationLocationText.addBreak();
-        formationLocationText.addBreak();
-
-
-        //Add second formation
-        formationText = formationParagraph.createRun();
-        formationText.setFontFamily("Arial");
-        formationText.setFontSize(10);
-        formationText.setBold(true);
-        formationText.setText("Técnico em Informática");
-
-        formationDateText = formationParagraph.createRun();
-        formationDateText.setFontFamily("Arial");
-        formationDateText.setFontSize(10);
-        formationDateText.setItalic(true);
-        formationDateText.setText(" - (2012 – 2013)");
-        //Next line
-        formationDateText.addBreak();
-
-        //Institution
-        formationInstitutionText = formationParagraph.createRun();
-        formationInstitutionText.setFontFamily("Arial");
-        formationInstitutionText.setFontSize(10);
-        formationInstitutionText.setItalic(true);
-        formationInstitutionText.setBold(true);
-        formationInstitutionText.setText("ETEC Deputado Ary de Camargo Pedroso, ");
-
-        formationLocationText = formationParagraph.createRun();
-        formationLocationText.setFontFamily("Arial");
-        formationLocationText.setFontSize(10);
-        formationLocationText.setItalic(true);
-        formationLocationText.setText("Piracicaba, São Paulo.");
+            formationLocationText.addBreak();
+            formationLocationText.addBreak();
+        }
 
         this.addLineSeparator(document);
     }
 
-    private void createLanguagesSection(XWPFDocument document) {
+    private void createLanguagesSection(XWPFDocument document, Curriculum curriculum) {
         document.createParagraph();
+        List<Language> languages = curriculum.getLanguages();
 
         XWPFParagraph languageParagraph = document.createParagraph();
         languageParagraph.setIndentationLeft(249 * 5);
@@ -290,103 +254,70 @@ public class CurriculumModel1 extends GenerateCurriculum {
         //Add TAB character
         languageTitle.addTab();
 
-        //First language
-        XWPFRun languageText = languageParagraph.createRun();
-        languageText.setFontFamily("Arial");
-        languageText.setFontSize(10);
-        languageText.setBold(true);
-        languageText.setText("Inglês - ");
+        for (Language language : languages) {
+            //First language
+            XWPFRun languageText = languageParagraph.createRun();
+            languageText.setFontFamily("Arial");
+            languageText.setFontSize(10);
+            languageText.setBold(true);
+            languageText.setText(language.getName());
+            languageText.setText(" - ");
 
-        XWPFRun languageProeficiencyText = languageParagraph.createRun();
-        languageProeficiencyText.setFontFamily("Arial");
-        languageProeficiencyText.setFontSize(10);
-        languageProeficiencyText.setText("Intermediário para Avançado");
-        languageProeficiencyText.addBreak();
-
-        //Second language
-        languageText = languageParagraph.createRun();
-        languageText.setFontFamily("Arial");
-        languageText.setFontSize(10);
-        languageText.setBold(true);
-        languageText.setText("Espanhol - ");
-
-        languageProeficiencyText = languageParagraph.createRun();
-        languageProeficiencyText.setFontFamily("Arial");
-        languageProeficiencyText.setFontSize(10);
-        languageProeficiencyText.setText("Fluente");
-        languageProeficiencyText.addBreak();
+            XWPFRun languageProeficiencyText = languageParagraph.createRun();
+            languageProeficiencyText.setFontFamily("Arial");
+            languageProeficiencyText.setFontSize(10);
+            languageProeficiencyText.setText(language.getLanguageProeficiency().name());
+            languageProeficiencyText.addBreak();
+        }
     }
 
-    private void createExperienceSection(XWPFDocument document) {
+    private void createExperienceSection(XWPFDocument document, Curriculum curriculum) {
+        List<ProfessionalExperience> professionalExperiences = curriculum.getProfessionalExperiences();
+
         XWPFRun languageTitle = document.createParagraph().createRun();
         languageTitle.setFontFamily("Arial");
         languageTitle.setFontSize(11);
         languageTitle.setBold(true);
         languageTitle.setText("Experiências Profissionais");
 
-        //First experience
-        document.createParagraph();
-        XWPFParagraph experienceParagraph = document.createParagraph();
-        XWPFRun experienceJobText = experienceParagraph.createRun();
-        experienceJobText.setFontFamily("Arial");
-        experienceJobText.setFontSize(10);
-        experienceJobText.setBold(true);
-        experienceJobText.setText("Estagiário Desenvolvimento Web, ");
+        for (ProfessionalExperience professionalExperience : professionalExperiences) {
+            //First experience
+            document.createParagraph();
+            XWPFParagraph experienceParagraph = document.createParagraph();
+            XWPFRun experienceJobText = experienceParagraph.createRun();
+            experienceJobText.setFontFamily("Arial");
+            experienceJobText.setFontSize(10);
+            experienceJobText.setBold(true);
+            experienceJobText.setText(professionalExperience.getJob());
+            experienceJobText.setText(", ");
 
-        XWPFRun jobDateText = experienceParagraph.createRun();
-        experienceJobText.setFontFamily("Arial");
-        experienceJobText.setFontSize(10);
-        jobDateText.setText("Janeiro 2017 – Atualmente, ");
+            XWPFRun jobDateText = experienceParagraph.createRun();
+            experienceJobText.setFontFamily("Arial");
+            experienceJobText.setFontSize(10);
+            jobDateText.setText(professionalExperience.getStartDate());
+            jobDateText.setText(" - ");
+            jobDateText.setText(professionalExperience.getFinalDate());
+            jobDateText.setText(", ");
 
-        XWPFRun jobCompanyText = experienceParagraph.createRun();
-        jobCompanyText.setFontFamily("Arial");
-        jobCompanyText.setFontSize(10);
-        jobCompanyText.setText("Empresa, ");
+            XWPFRun jobCompanyText = experienceParagraph.createRun();
+            jobCompanyText.setFontFamily("Arial");
+            jobCompanyText.setFontSize(10);
+            jobCompanyText.setText(professionalExperience.getCompany());
+            jobCompanyText.setText(", ");
 
-        XWPFRun jobLocationText = experienceParagraph.createRun();
-        jobLocationText.setFontFamily("Arial");
-        jobLocationText.setFontSize(10);
-        jobLocationText.setText("Cidade, Estado");
+            XWPFRun jobLocationText = experienceParagraph.createRun();
+            jobLocationText.setFontFamily("Arial");
+            jobLocationText.setFontSize(10);
+            jobLocationText.setText(professionalExperience.getLocation());
 
-        XWPFParagraph jobDescriptionParagraph = document.createParagraph();
-        jobDescriptionParagraph.setIndentationLeft(150 * 5);
-        XWPFRun jobDescriptionText = jobDescriptionParagraph.createRun();
-        jobDescriptionText.setFontFamily("Arial");
-        jobDescriptionText.setFontSize(10);
-        jobDescriptionText.setItalic(true);
-        jobDescriptionText.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus tempus dolor, non volutpat neque rutrum aliquam. Interdum et malesuada fames ac ante ipsum primis in faucibus.");
-
-        //Second experience
-        document.createParagraph();
-        experienceParagraph = document.createParagraph();
-        experienceJobText = experienceParagraph.createRun();
-        experienceJobText.setFontFamily("Arial");
-        experienceJobText.setFontSize(10);
-        experienceJobText.setBold(true);
-        experienceJobText.setText("Estagiário de Desenvolvimento, ");
-
-        jobDateText = experienceParagraph.createRun();
-        experienceJobText.setFontFamily("Arial");
-        experienceJobText.setFontSize(10);
-        jobDateText.setText("Agosto – Dezembro 2016, ");
-
-        jobCompanyText = experienceParagraph.createRun();
-        jobCompanyText.setFontFamily("Arial");
-        jobCompanyText.setFontSize(10);
-        jobCompanyText.setText("Empresa, ");
-
-        jobLocationText = experienceParagraph.createRun();
-        jobLocationText.setFontFamily("Arial");
-        jobLocationText.setFontSize(10);
-        jobLocationText.setText("Cidade, São Paulo");
-
-        jobDescriptionParagraph = document.createParagraph();
-        jobDescriptionParagraph.setIndentationLeft(150 * 5);
-        jobDescriptionText = jobDescriptionParagraph.createRun();
-        jobDescriptionText.setFontFamily("Arial");
-        jobDescriptionText.setFontSize(10);
-        jobDescriptionText.setItalic(true);
-        jobDescriptionText.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus tempus dolor, non volutpat neque rutrum aliquam. Interdum et malesuada fames ac ante ipsum primis in faucibus.");
+            XWPFParagraph jobDescriptionParagraph = document.createParagraph();
+            jobDescriptionParagraph.setIndentationLeft(150 * 5);
+            XWPFRun jobDescriptionText = jobDescriptionParagraph.createRun();
+            jobDescriptionText.setFontFamily("Arial");
+            jobDescriptionText.setFontSize(10);
+            jobDescriptionText.setItalic(true);
+            jobDescriptionText.setText(professionalExperience.getJobDescription());
+        }
     }
 
     private void addLineSeparator(XWPFDocument document) {
@@ -398,7 +329,7 @@ public class CurriculumModel1 extends GenerateCurriculum {
     }
 
     @Override
-    protected void createDocumentFooter(XWPFDocument document) {
+    protected void createDocumentFooter(XWPFDocument document, Curriculum curriculum) {
         System.out.println("No Footer");
     }
 }

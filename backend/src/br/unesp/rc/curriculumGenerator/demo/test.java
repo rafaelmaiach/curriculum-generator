@@ -8,7 +8,7 @@ public class test {
         GenerateCurriculum generateCurriculum = new CurriculumModel1();
 
         try {
-            generateCurriculum.Export();
+            //generateCurriculum.Export();
         } catch (Exception e) {
             e.printStackTrace();
         }
