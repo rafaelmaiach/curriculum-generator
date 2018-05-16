@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 
 /**
- * @class Word
+ * @class CurriculumForm
  */
-class Word extends Component {
+class CurriculumForm extends Component {
   state = {}
 
   /**
-   * @method Word#render
+   * @method CurriculumForm#render
    * @description React render method
-   * @returns {HTML} Word container
+   * @returns {HTML} CurriculumForm container
    */
   render() {
     return (
-      <div className="word-container">
-        Word
+      <div className="curriculum-form-container">
+        CurriculumForm
       </div>
     );
   }
 }
 
-module.exports = Word;
+module.exports = CurriculumForm;
