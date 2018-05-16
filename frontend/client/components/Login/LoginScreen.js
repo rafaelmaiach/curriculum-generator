@@ -12,6 +12,7 @@ class LoginScreen extends Component {
   state = {
     username: '',
     password: '',
+    signup: false,
   }
 
   handleUsername = ({ target }) => {
@@ -22,10 +23,26 @@ class LoginScreen extends Component {
     this.setState(() => ({ password: target.value }));
   }
 
-  loginAction = () => {
+  handleSignup = () => {
+    this.setState(() => ({ signup: true }));
+  }
+
+  submitLogin = () => {
     AuthObject.authenticate(() => {
       this.props.history.push('/curriculum');
     });
+  }
+
+  submitSignup = () => {
+    console.log('submited');
+  }
+
+  cancelSignup = () => {
+    this.setState(() => ({
+      username: '',
+      password: '',
+      signup: false,
+    }));
   }
 
   /**
@@ -34,13 +51,18 @@ class LoginScreen extends Component {
    * @returns {HTMLElement} LoginScreen component
    */
   render() {
-    console.log(this.state);
-
+    const { signup } = this.state;
     return (
       <div className="login-screen-container">
+        <div className="header-text"> CURRICULUM GENERATOR </div>
         <LoginForm
           handleUsername={this.handleUsername}
           handlePassword={this.handlePassword}
+          handleSignup={this.handleSignup}
+          submitLogin={this.submitLogin}
+          submitSignup={this.submitSignup}
+          cancelSignup={this.cancelSignup}
+          signupStatus={signup}
         />
       </div>
     );
