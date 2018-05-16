@@ -5,10 +5,10 @@
   "main": "index.js",
   "private": false,
   "scripts": {
-    "prod-start": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 server/app.js",
-    "dev-start": "nodemon server/app.js",
-    "build": "webpack --config ./webpack.config.js --progress --colors",
-    "dev-build": "webpack --config ./webpack.config.js --progress --colors"
+    "prod-start": "npm run build && node --optimize_for_size --max_old_space_size=460 --gc_interval=100 server/app.js",
+    "dev-start": "cross-env NODE_ENV=development && nodemon server/app.js",
+    "build": "cross-env NODE_ENV=production && webpack --config ./webpack.config.js --progress --colors",
+    "dev-build": "cross-env NODE_ENV=development && webpack --config ./webpack.config.js --progress --colors"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "body-parser": "1.18.2",
     "compression": "1.7.2",
     "cross-env": "5.1.4",
+    "dotenv": "^5.0.1",
     "express": "4.16.3",
     "prop-types": "15.6.1",
     "react": "16.2.0",
