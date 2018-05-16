@@ -2,12 +2,26 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import { AuthObject } from './Auth';
+import LoginForm from './LoginForm';
 
 /**
  * @override
  * @class LoginScreen
  */
 class LoginScreen extends Component {
+  state = {
+    username: '',
+    password: '',
+  }
+
+  handleUsername = ({ target }) => {
+    this.setState(() => ({ username: target.value }));
+  }
+
+  handlePassword = ({ target }) => {
+    this.setState(() => ({ password: target.value }));
+  }
+
   loginAction = () => {
     AuthObject.authenticate(() => {
       this.props.history.push('/curriculum');
@@ -20,12 +34,14 @@ class LoginScreen extends Component {
    * @returns {HTMLElement} LoginScreen component
    */
   render() {
+    console.log(this.state);
+
     return (
-      <div>
-        <p>You must log in to view the page</p>
-        <button onClick={this.loginAction}>
-          Log in
-        </button>
+      <div className="login-screen-container">
+        <LoginForm
+          handleUsername={this.handleUsername}
+          handlePassword={this.handlePassword}
+        />
       </div>
     );
   }

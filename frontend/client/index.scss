@@ -3,4 +3,7 @@
 @import './style-helpers/reset.scss';
 
 // Curriculum styles
-@import './containers/Curriculum/curriculum-form.scss';
+@import './components/Curriculum/curriculum-form.scss';
+
+// Login styles
+@import './components/Login/login.scss;
