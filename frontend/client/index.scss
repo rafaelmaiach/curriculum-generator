@@ -2,8 +2,5 @@
 @import './style-helpers/variables.scss';
 @import './style-helpers/reset.scss';
 
-// Word styles
-@import './containers/word/word.scss';
-
-// Excel styles
-@import './containers/excel/excel.scss';
+// Curriculum styles
+@import './containers/Curriculum/curriculum-form.scss';

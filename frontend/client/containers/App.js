@@ -1,7 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 
-import Word from './word/Word';
-import Excel from './excel/Excel';
+import LoginScreen from './Login/LoginScreen';
+import CurriculumForm from './Curriculum/CurriculumForm';
+
+import { PrivateRoute } from './Login/Auth';
 
 import '../index.scss';
 
@@ -15,11 +18,11 @@ class App extends Component {
    */
   render() {
     return (
-      <Fragment>
-        <Word />
-        <Excel />
-      </Fragment>
-    )
+      <Switch>
+        <Route exact path="/" component={LoginScreen} />
+        <PrivateRoute path="/curriculum" component={CurriculumForm} />
+      </Switch>
+    );
   }
 }
 

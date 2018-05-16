@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { HashRouter } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader'; //eslint-disable-line
 
 import App from './containers/App';
@@ -7,7 +8,9 @@ import App from './containers/App';
 const renderApp = Component =>
   render(
     <AppContainer>
-      <Component />
+      <HashRouter>
+        <Component />
+      </HashRouter>
     </AppContainer>,
     document.getElementById('app'),
   );
