@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 
-import { AuthObject } from './Auth';
-import LoginForm from './LoginForm';
+import LoginFormSignIn from './LoginFormSignIn';
+import LoginFormSignUp from './LoginFormSignUp';
 
 /**
  * @override
@@ -10,39 +9,15 @@ import LoginForm from './LoginForm';
  */
 class LoginScreen extends Component {
   state = {
-    username: '',
-    password: '',
-    signup: false,
-  }
-
-  handleUsername = ({ target }) => {
-    this.setState(() => ({ username: target.value }));
-  }
-
-  handlePassword = ({ target }) => {
-    this.setState(() => ({ password: target.value }));
+    signupStatus: false,
   }
 
   handleSignup = () => {
-    this.setState(() => ({ signup: true }));
-  }
-
-  submitLogin = () => {
-    AuthObject.authenticate(() => {
-      this.props.history.push('/curriculum');
-    });
+    this.setState(prevState => ({ signupStatus: !prevState.signupStatus }));
   }
 
   submitSignup = () => {
     console.log('submited');
-  }
-
-  cancelSignup = () => {
-    this.setState(() => ({
-      username: '',
-      password: '',
-      signup: false,
-    }));
   }
 
   /**
@@ -51,22 +26,25 @@ class LoginScreen extends Component {
    * @returns {HTMLElement} LoginScreen component
    */
   render() {
-    const { signup } = this.state;
+    const { signupStatus } = this.state;
+
+    const form = !signupStatus ?
+      (<LoginFormSignIn
+        submitLogin={this.submitLogin}
+        handleSignup={this.handleSignup}
+      />) :
+      (<LoginFormSignUp
+        submitSignup={this.submitSignup}
+        handleSignup={this.handleSignup}
+      />);
+
     return (
       <div className="login-screen-container">
         <div className="header-text"> CURRICULUM GENERATOR </div>
-        <LoginForm
-          handleUsername={this.handleUsername}
-          handlePassword={this.handlePassword}
-          handleSignup={this.handleSignup}
-          submitLogin={this.submitLogin}
-          submitSignup={this.submitSignup}
-          cancelSignup={this.cancelSignup}
-          signupStatus={signup}
-        />
+        {form}
       </div>
     );
   }
 }
 
-module.exports = withRouter(LoginScreen);
+module.exports = LoginScreen;
