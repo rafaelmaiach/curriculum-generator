@@ -4,13 +4,13 @@ import br.unesp.rc.curriculumGenerator.model.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class test2 {
+public class testJSONString {
     public static void main(String args[]) {
         Curriculum curriculum = getCurriculum();
 
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            String json = objectMapper.writer().withDefaultPrettyPrinter().writeValueAsString(curriculum);
+            String json = objectMapper.writer().writeValueAsString(curriculum);
 
             System.out.println(json);
 
