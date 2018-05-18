@@ -36,7 +36,7 @@ public class CurriculumModel1 extends GenerateCurriculum {
         nameLine.setFontFamily("Arial");
         nameLine.setFontSize(12);
         nameLine.setBold(true);
-        nameLine.setText(curriculum.getUser().getName());
+        nameLine.setText(curriculum.getName());
 
         //Contact information
         header.createParagraph();
@@ -45,50 +45,50 @@ public class CurriculumModel1 extends GenerateCurriculum {
         XWPFRun cityStateCountryText = header.createParagraph().createRun();
         cityStateCountryText.setFontFamily("Arial");
         cityStateCountryText.setFontSize(10);
-        cityStateCountryText.setText(curriculum.getUser().getCity());
+        cityStateCountryText.setText(curriculum.getCity());
         cityStateCountryText.setText(", ");
-        cityStateCountryText.setText(curriculum.getUser().getState());
+        cityStateCountryText.setText(curriculum.getState());
         cityStateCountryText.setText(", ");
-        cityStateCountryText.setText(curriculum.getUser().getCountry());
+        cityStateCountryText.setText(curriculum.getCountry());
 
-        String cellphone = curriculum.getUser().getContact().getCellPhone();
+        String cellphone = curriculum.getCellPhone();
         if (!(cellphone == null || cellphone.isEmpty())) {
             //Cellphone
             XWPFRun cellphoneText = header.createParagraph().createRun();
             cellphoneText.setFontFamily("Arial");
             cellphoneText.setFontSize(10);
             cellphoneText.setText("Celular: ");
-            cellphoneText.setText(curriculum.getUser().getContact().getCellPhone());
+            cellphoneText.setText(curriculum.getCellPhone());
         }
 
-        String email = curriculum.getUser().getContact().getEmail();
+        String email = curriculum.getEmail();
         if (!(email == null || email.isEmpty())) {
             //Email
             XWPFRun emailText = header.createParagraph().createRun();
             emailText.setFontFamily("Arial");
             emailText.setFontSize(10);
             emailText.setText("E-mail: ");
-            emailText.setText(curriculum.getUser().getContact().getEmail());
+            emailText.setText(curriculum.getEmail());
         }
 
-        String github = curriculum.getUser().getContact().getGithub();
+        String github = curriculum.getGithub();
         if (!(github == null || github.isEmpty())) {
             //GitHub
             XWPFRun githubText = header.createParagraph().createRun();
             githubText.setFontFamily("Arial");
             githubText.setFontSize(10);
             githubText.setText("GitHub: ");
-            githubText.setText(curriculum.getUser().getContact().getGithub());
+            githubText.setText(curriculum.getGithub());
         }
 
-        String linkedin = curriculum.getUser().getContact().getLinkedin();
+        String linkedin = curriculum.getLinkedin();
         if (!(linkedin == null || linkedin.isEmpty())) {
             //LinkedIn
             XWPFRun linkedInText = header.createParagraph().createRun();
             linkedInText.setFontFamily("Arial");
             linkedInText.setFontSize(10);
             linkedInText.setText("LinkedIn: ");
-            linkedInText.setText(curriculum.getUser().getContact().getLinkedin());
+            linkedInText.setText(curriculum.getLinkedin());
         }
 
         //Separator

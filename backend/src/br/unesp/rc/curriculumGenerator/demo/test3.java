@@ -41,6 +41,17 @@ public class test3 {
         //Create curriculum
         Curriculum curriculum = new Curriculum();
         curriculum.setUser(user);
+
+        curriculum.setName(user.getName());
+        curriculum.setCountry(user.getCountry());
+        curriculum.setState(user.getState());
+        curriculum.setCity(user.getCity());
+
+        curriculum.setCellPhone(contact.getCellPhone());
+        curriculum.setEmail(contact.getEmail());
+        curriculum.setGithub(contact.getGithub());
+        curriculum.setLinkedin(contact.getLinkedin());
+
         curriculum.setObjective("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum.");
         curriculum.setSummary("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum.\n" +
                 "\n" +
