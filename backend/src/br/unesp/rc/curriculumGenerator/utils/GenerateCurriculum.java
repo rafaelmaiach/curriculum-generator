@@ -10,10 +10,10 @@ import java.io.IOException;
 
 public abstract class GenerateCurriculum {
     public File Export(Curriculum curriculum) throws IOException {
-        if (curriculum.getUser() != null) {
-
+        String userName = curriculum.getName();
+        if (!(userName == null || userName.isEmpty())) {
             String TEST_CURRICULUM_PATH = "generatedCurriculum/";
-            String curriculumFileName = curriculum.getUser().getName() + ".docx";
+            String curriculumFileName = userName + ".docx";
             curriculumFileName = curriculumFileName.replaceAll("[^a-zA-Z0-9.-]", "_");
 
             Boolean dirCreated = new File(TEST_CURRICULUM_PATH).mkdirs();

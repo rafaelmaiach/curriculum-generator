@@ -6,6 +6,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class test2 {
     public static void main(String args[]) {
+        Curriculum curriculum = getCurriculum();
+
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            String json = objectMapper.writer().withDefaultPrettyPrinter().writeValueAsString(curriculum);
+
+            System.out.println(json);
+
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println();
+        System.out.println("=== FIM ===");
+    }
+
+    public static Curriculum getCurriculum() {
         //Create user
         User user = new User();
         user.setName("Seu Nome");
@@ -29,7 +46,17 @@ public class test2 {
 
         //Create curriculum
         Curriculum curriculum = new Curriculum();
-        curriculum.setUser(user);
+
+        curriculum.setName(user.getName());
+        curriculum.setCountry(user.getCountry());
+        curriculum.setState(user.getState());
+        curriculum.setCity(user.getCity());
+
+        curriculum.setCellPhone(contact.getCellPhone());
+        curriculum.setEmail(contact.getEmail());
+        curriculum.setGithub(contact.getGithub());
+        curriculum.setLinkedin(contact.getLinkedin());
+
         curriculum.setObjective("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum.");
         curriculum.setSummary("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum.\n" +
                 "\n" +
@@ -97,20 +124,6 @@ public class test2 {
         professionalExperience2.setJobDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus tempus dolor, non volutpat neque rutrum aliquam. Interdum et malesuada fames ac ante ipsum primis in faucibus.");
         curriculum.addProfesionalExperience(professionalExperience2);
 
-        //user.addCurriculum(curriculum); //add curriculum to user
-
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            //String json = objectMapper.writer().withDefaultPrettyPrinter().writeValueAsString(curriculum);
-            String json = objectMapper.writer().writeValueAsString(curriculum);
-
-            System.out.println(json);
-
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println();
-        System.out.println("=== FIM ===");
+        return curriculum;
     }
 }

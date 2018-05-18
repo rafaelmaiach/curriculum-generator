@@ -18,6 +18,11 @@ public class GetCurriculum implements ICommand {
         //JSON from String to Object
         Curriculum curriculum = new ObjectMapper().readValue(JSONString, Curriculum.class);
 
+        //Set default name at user's curriculum If not defined
+        String userName = curriculum.getName();
+        if (userName == null || userName.isEmpty())
+            curriculum.setName("Default Name");
+
         GenerateCurriculum generateCurriculum = new CurriculumModel1();
         File generatedCurriculum = generateCurriculum.Export(curriculum);
 
