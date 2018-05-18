@@ -5,6 +5,8 @@ import java.util.List;
 
 public class User {
 
+    private int idUser;
+
     private String name;
 
     private String country;
@@ -21,6 +23,14 @@ public class User {
 
     public User() {
         this.curriculums = new ArrayList<>();
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public String getName() {

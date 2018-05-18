@@ -5,6 +5,24 @@ import java.util.List;
 
 public class Curriculum {
 
+    private int idCurriculum;
+
+    private String name;
+
+    private String country;
+
+    private String state;
+
+    private String city;
+
+    private String cellPhone;
+
+    private String email;
+
+    private String github;
+
+    private String linkedin;
+
     private String objective;
 
     private String summary;
@@ -24,6 +42,78 @@ public class Curriculum {
         this.setFormations(new ArrayList<>());
         this.setLanguages(new ArrayList<>());
         this.setProfessionalExperiences(new ArrayList<>());
+    }
+
+    public int getIdCurriculum() {
+        return idCurriculum;
+    }
+
+    public void setIdCurriculum(int idCurriculum) {
+        this.idCurriculum = idCurriculum;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCellPhone() {
+        return cellPhone;
+    }
+
+    public void setCellPhone(String cellPhone) {
+        this.cellPhone = cellPhone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getGithub() {
+        return github;
+    }
+
+    public void setGithub(String github) {
+        this.github = github;
+    }
+
+    public String getLinkedin() {
+        return linkedin;
+    }
+
+    public void setLinkedin(String linkedin) {
+        this.linkedin = linkedin;
     }
 
     public String getObjective() {
