@@ -8,8 +8,17 @@ INSERT INTO access(User_idUser, login, password) VALUES(1, 'vedoveto', '123456')
 INSERT INTO contact(User_idUser, cellPhone, email, github, 	linkedin) VALUES(1, '(19) 9 98423-7308', 'brunoovedoveto@gmail.com', 'https://github.com/bleandro', null);
 
 -- Curriculum
-INSERT INTO curriculum(User_idUser, objective, summary) VALUES(
+INSERT INTO curriculum(User_idUser, name, country, state, city, cellPhone, email, github, linkedin, objective, summary) VALUES(
 1,
+
+'Seu Nome',
+'País',
+'Estado',
+'Cidade',
+'(99) 123 12-3987',
+'email@email.com',
+'www.github.com/bleandro',
+null,
 
 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum',
 
