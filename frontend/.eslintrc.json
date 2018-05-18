@@ -17,6 +17,7 @@
   "extends": "airbnb",
   "parser": "babel-eslint",
   "rules": {
+    "react/prop-types": false,
     "react/jsx-filename-extension": [
       1,
       {

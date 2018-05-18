@@ -1,0 +1,83 @@
+.login-screen-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: $primary-color-blue;
+
+  .header-text {
+    font-size: 45px;
+    color: white;
+    padding-left: 7%;   
+    margin-top: 3%;
+    margin-bottom: 3%;
+    background-image: url('/assets/images/word-logo.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .login-form__container.signup-container {
+    width: 50%;
+    button:last-child {
+      margin-left: 2%;
+      background-color: $primary-color-red;
+    }
+  }
+
+  .login-form__container {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 10px 20px;
+
+    .login-credentials-error {
+      color: red;
+      align-self: center;
+      font-size: 11px;
+    }
+
+    .form-input-container {
+      display: flex;
+      flex-direction: column;
+      padding: 5px 10px;
+      width: 100%;
+
+      input {
+        width: 100%;
+        padding: 5px 10px;
+        border-radius: 2px;
+        border: 1px solid #DADADA;
+        font-size: 12px;
+        margin-top: 5px;
+      }
+    }
+
+    .form-buttons-container {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      padding: 5px 10px;
+    }
+    button {
+      width: 25%;
+      padding: 7px;
+      margin-top: 20px;
+      font-size: 15px;
+      align-self: center;
+      border: #DADADA;
+      color: white;
+      border-radius: 2px;
+      background-color: darken($primary-color-green, 5);
+      cursor: pointer;
+    }
+
+    button:last-child {
+      margin-left: 2%;
+      background-color: darken($primary-color-blue, 5);
+    }
+  }
+}

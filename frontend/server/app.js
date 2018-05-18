@@ -40,7 +40,8 @@ if (!isInProduction) {
   app.use(webpackHotMiddleware(compiler));
 }
 
-app.use(express.static(path.resolve(__dirname, '../dist')));
+const publicPath = express.static(path.join(__dirname, '../dist'));
+app.use('/', publicPath);
 
 app.listen(process.env.PORT || 8001, '0.0.0.0', () => {
   console.log(`Server starting on: ${process.env.PORT || 8001}`);
