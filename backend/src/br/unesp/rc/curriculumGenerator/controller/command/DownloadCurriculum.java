@@ -10,7 +10,7 @@ import com.sun.net.httpserver.HttpExchange;
 
 import java.io.*;
 
-public class GetCurriculum implements ICommand {
+public class DownloadCurriculum implements ICommand {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
         String JSONString = Helper.getJSONfromHttpExchange(httpExchange);
