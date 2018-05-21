@@ -7,4 +7,8 @@ public class FactoryService {
     public static UserService getUserService() {
         return new UserServiceImpl();
     }
+
+    public static CurriculumService getCurriculumService() {
+        return new CurriculumServiceImpl();
+    }
 }

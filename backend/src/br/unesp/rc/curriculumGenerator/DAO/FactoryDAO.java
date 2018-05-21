@@ -16,4 +16,8 @@ public class FactoryDAO {
     public static ContactDAO getContactDAO() {
         return new ContactDAOImpl();
     }
+
+    public static CurriculumDAO getCurriculumDAO() {
+        return new CurriculumDAOImpl();
+    }
 }
