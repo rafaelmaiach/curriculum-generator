@@ -43,10 +43,10 @@ INSERT INTO language(Curriculum_idCurriculum, name, languageProeficiency) VALUES
 INSERT INTO language(Curriculum_idCurriculum, name, languageProeficiency) VALUES (1, 'Espanhol', 4);
 
 -- Professional Experience (Curriculum 1)
-INSERT INTO professionalexperiencie(Curriculum_idCurriculum, job, startDate, finalDate, company, location, jobDescription)
+INSERT INTO professionalexperience(Curriculum_idCurriculum, job, startDate, finalDate, company, location, jobDescription)
 VALUES (1, 'Estagiário Desenvolvimento Web', 'Janeiro 2017', 'Atualmente', 'Empresa', 'Cidade, Estado', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus tempus dolor, non volutpat neque rutrum aliquam. Interdum et malesuada fames ac ante ipsum primis in faucibus.');
 
-INSERT INTO professionalexperiencie(Curriculum_idCurriculum, job, startDate, finalDate, company, location, jobDescription)
+INSERT INTO professionalexperience(Curriculum_idCurriculum, job, startDate, finalDate, company, location, jobDescription)
 VALUES (1, 'Estagiário de Desenvolvimento', 'Agosto', 'Dezembro 2016', 'Empresa', 'Cidade, São Paulo', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus tempus dolor, non volutpat neque rutrum aliquam. Interdum et malesuada fames ac ante ipsum primis in faucibus.');
 
 
@@ -86,8 +86,8 @@ INSERT INTO formation(Curriculum_idCurriculum, name, institution, startDate, fin
 INSERT INTO language(Curriculum_idCurriculum, name, languageProeficiency) VALUES (2, 'Inglês', 1);
 
 -- Professional Experience (Curriculum 2)
-INSERT INTO professionalexperiencie(Curriculum_idCurriculum, job, startDate, finalDate, company, location, jobDescription)
+INSERT INTO professionalexperience(Curriculum_idCurriculum, job, startDate, finalDate, company, location, jobDescription)
 VALUES (2, 'Estagiário', '2013', '2014', 'Empresa', 'Cidade, Estado', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus tempus dolor, non volutpat neque rutrum aliquam. Interdum et malesuada fames ac ante ipsum primis in faucibus.');
 
-INSERT INTO professionalexperiencie(Curriculum_idCurriculum, job, startDate, finalDate, company, location, jobDescription)
+INSERT INTO professionalexperience(Curriculum_idCurriculum, job, startDate, finalDate, company, location, jobDescription)
 VALUES (2, 'Gerente', 'Janeiro/2018', 'Atualmente', 'Empresa', 'Cidade, São Paulo', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus tempus dolor, non volutpat neque rutrum aliquam. Interdum et malesuada fames ac ante ipsum primis in faucibus.');

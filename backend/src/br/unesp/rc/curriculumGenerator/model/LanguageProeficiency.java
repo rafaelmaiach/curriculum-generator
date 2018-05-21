@@ -4,18 +4,33 @@ public enum LanguageProeficiency {
 
     BASIC(1), INTERMEDIARY(2), ADVANCED(3), FLUENT(4);
 
-    private int languageProeficiency;
+    private int value;
 
     private LanguageProeficiency(int languageProeficiency) {
-        this.setLanguageProeficiency(languageProeficiency);
+        this.setValue(languageProeficiency);
     }
 
-    public int getLanguageProeficiency() {
-        return languageProeficiency;
+    public static LanguageProeficiency valueOf(int index) {
+        switch (index) {
+            case 1:
+                return LanguageProeficiency.BASIC;
+            case 2:
+                return LanguageProeficiency.INTERMEDIARY;
+            case 3:
+                return LanguageProeficiency.ADVANCED;
+            case 4:
+                return LanguageProeficiency.FLUENT;
+        }
+
+        return null;
     }
 
-    public void setLanguageProeficiency(int languageProeficiency) {
-        this.languageProeficiency = languageProeficiency;
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 
     @Override

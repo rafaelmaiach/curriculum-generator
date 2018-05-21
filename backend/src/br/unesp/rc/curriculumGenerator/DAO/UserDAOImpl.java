@@ -15,24 +15,24 @@ public class UserDAOImpl implements UserDAO {
     public User selectUserByLogin(String login, String password) {
         Connection con = FactoryConnection.getConnection();
         User userReturn = null;
-        PreparedStatement pstm = null;
-        ResultSet res = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
 
         if (con != null) {
             try {
-                pstm = con.prepareStatement(SELECT_USER_BY_LOGIN);
-                pstm.setString(1, login);
-                pstm.setString(2, password);
+                preparedStatement = con.prepareStatement(SELECT_USER_BY_LOGIN);
+                preparedStatement.setString(1, login);
+                preparedStatement.setString(2, password);
 
-                res = pstm.executeQuery();
-                while (res.next()) {
+                resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
                     // Get user data
                     userReturn = new User();
-                    userReturn.setIdUser(res.getInt(1));
-                    userReturn.setName(res.getString(2));
-                    userReturn.setCountry(res.getString(3));
-                    userReturn.setState(res.getString(4));
-                    userReturn.setCity(res.getString(5));
+                    userReturn.setIdUser(resultSet.getInt(1));
+                    userReturn.setName(resultSet.getString(2));
+                    userReturn.setCountry(resultSet.getString(3));
+                    userReturn.setState(resultSet.getString(4));
+                    userReturn.setCity(resultSet.getString(5));
 
                     // Select access
                     AccessDAO accessDAO = new AccessDAOImpl();

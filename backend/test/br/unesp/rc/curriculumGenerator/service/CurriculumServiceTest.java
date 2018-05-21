@@ -3,6 +3,8 @@ package br.unesp.rc.curriculumGenerator.service;
 import br.unesp.rc.curriculumGenerator.model.Curriculum;
 import org.junit.*;
 
+import java.util.List;
+
 public class CurriculumServiceTest {
     int userId;
 
@@ -26,13 +28,16 @@ public class CurriculumServiceTest {
     @Test
     public void selectCurriculumByUserIdTest() {
         CurriculumService curriculumService = FactoryService.getCurriculumService();
-        Curriculum curriculum = curriculumService.selectCurriculumByUserId(userId);
+        List<Curriculum> curriculumList = curriculumService.selectCurriculumByUserId(userId);
 
         // Assert objects not null
-        Assert.assertNotNull(curriculum);
-        Assert.assertNotNull(curriculum.getAbilities());
-        Assert.assertNotNull(curriculum.getFormations());
-        Assert.assertNotNull(curriculum.getProfessionalExperiences());
-        Assert.assertNotNull(curriculum.getLanguages());
+        Assert.assertNotNull(curriculumList);
+
+        for (Curriculum curriculum : curriculumList) {
+            Assert.assertNotNull(curriculum.getAbilities());
+            Assert.assertNotNull(curriculum.getFormations());
+            Assert.assertNotNull(curriculum.getProfessionalExperiences());
+            Assert.assertNotNull(curriculum.getLanguages());
+        }
     }
 }

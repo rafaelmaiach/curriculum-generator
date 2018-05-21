@@ -4,6 +4,8 @@ import br.unesp.rc.curriculumGenerator.DAO.CurriculumDAO;
 import br.unesp.rc.curriculumGenerator.DAO.FactoryDAO;
 import br.unesp.rc.curriculumGenerator.model.Curriculum;
 
+import java.util.List;
+
 public class CurriculumServiceImpl implements CurriculumService {
     CurriculumDAO curriculumDAO;
 
@@ -12,11 +14,11 @@ public class CurriculumServiceImpl implements CurriculumService {
     }
 
     @Override
-    public Curriculum selectCurriculumByUserId(int userId) {
-        Curriculum curriculum = null;
+    public List<Curriculum> selectCurriculumByUserId(int userId) {
+        List<Curriculum> curriculumList = null;
 
-        curriculum = this.curriculumDAO.selectCurriculumByUserId(userId);
+        curriculumList = this.curriculumDAO.selectCurriculumByUserId(userId);
 
-        return curriculum;
+        return curriculumList;
     }
 }

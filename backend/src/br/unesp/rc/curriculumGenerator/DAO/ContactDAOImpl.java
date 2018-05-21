@@ -13,22 +13,22 @@ public class ContactDAOImpl implements ContactDAO {
     public Contact selectContactByUserId(int userId) {
         Connection con = FactoryConnection.getConnection();
         Contact contactReturn = null;
-        PreparedStatement pstm = null;
-        ResultSet res = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
 
         if (con != null) {
             try {
-                pstm = con.prepareStatement(SELECT_CONTACT_BY_USERID);
-                pstm.setInt(1, userId);
+                preparedStatement = con.prepareStatement(SELECT_CONTACT_BY_USERID);
+                preparedStatement.setInt(1, userId);
 
-                res = pstm.executeQuery();
-                while (res.next()) {
+                resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
                     // Get Contact data
                     contactReturn = new Contact();
-                    contactReturn.setCellPhone(res.getString(2));
-                    contactReturn.setEmail(res.getString(2));
-                    contactReturn.setGithub(res.getString(2));
-                    contactReturn.setLinkedin(res.getString(2));
+                    contactReturn.setCellPhone(resultSet.getString(2));
+                    contactReturn.setEmail(resultSet.getString(2));
+                    contactReturn.setGithub(resultSet.getString(2));
+                    contactReturn.setLinkedin(resultSet.getString(2));
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();

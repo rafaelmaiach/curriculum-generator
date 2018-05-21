@@ -14,20 +14,20 @@ public class AccessDAOImpl implements AccessDAO {
     public Access selectAccessByUserId(int userId) {
         Connection con = FactoryConnection.getConnection();
         Access accessReturn = null;
-        PreparedStatement pstm = null;
-        ResultSet res = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
 
         if (con != null) {
             try {
-                pstm = con.prepareStatement(SELECT_ACCESS_BY_USERID);
-                pstm.setInt(1, userId);
+                preparedStatement = con.prepareStatement(SELECT_ACCESS_BY_USERID);
+                preparedStatement.setInt(1, userId);
 
-                res = pstm.executeQuery();
-                while (res.next()) {
+                resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
                     // Get Access data
                     accessReturn = new Access();
-                    accessReturn.setLogin(res.getString(2));
-                    accessReturn.setPassword(res.getString(3));
+                    accessReturn.setLogin(resultSet.getString(2));
+                    accessReturn.setPassword(resultSet.getString(3));
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();
