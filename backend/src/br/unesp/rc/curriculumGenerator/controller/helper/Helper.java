@@ -4,6 +4,8 @@ import com.sun.net.httpserver.HttpExchange;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Helper {
     public static String getJSONfromHttpExchange(HttpExchange httpExchange) {
@@ -26,5 +28,18 @@ public class Helper {
             ex.printStackTrace();
             return "";
         }
+    }
+
+    public static Map<String, String> queryToMap(String query) {
+        Map<String, String> result = new HashMap<String, String>();
+        for (String param : query.split("&")) {
+            String pair[] = param.split("=");
+            if (pair.length > 1)
+                result.put(pair[0], pair[1]);
+            else
+                result.put(pair[0], "");
+
+        }
+        return result;
     }
 }
