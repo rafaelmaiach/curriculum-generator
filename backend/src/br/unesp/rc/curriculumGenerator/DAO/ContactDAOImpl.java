@@ -26,9 +26,9 @@ public class ContactDAOImpl implements ContactDAO {
                     // Get Contact data
                     contactReturn = new Contact();
                     contactReturn.setCellPhone(resultSet.getString(2));
-                    contactReturn.setEmail(resultSet.getString(2));
-                    contactReturn.setGithub(resultSet.getString(2));
-                    contactReturn.setLinkedin(resultSet.getString(2));
+                    contactReturn.setEmail(resultSet.getString(3));
+                    contactReturn.setGithub(resultSet.getString(4));
+                    contactReturn.setLinkedin(resultSet.getString(5));
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();

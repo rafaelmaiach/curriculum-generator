@@ -1,9 +1,9 @@
 package br.unesp.rc.curriculumGenerator.controller.command;
 
-import br.unesp.rc.curriculumGenerator.DAO.CurriculumDAO;
-import br.unesp.rc.curriculumGenerator.DAO.FactoryDAO;
 import br.unesp.rc.curriculumGenerator.controller.helper.Helper;
 import br.unesp.rc.curriculumGenerator.model.Curriculum;
+import br.unesp.rc.curriculumGenerator.service.CurriculumService;
+import br.unesp.rc.curriculumGenerator.service.FactoryService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
@@ -32,8 +32,8 @@ public class GetCurriculumList implements ICommand {
 
             //SELECT user's curriculum from database and set JSONResponse
             if (userId > 0) {
-                CurriculumDAO curriculumDAO = FactoryDAO.getCurriculumDAO();
-                List<Curriculum> curriculumList = curriculumDAO.selectCurriculumByUserId(userId);
+                CurriculumService curriculumService = FactoryService.getCurriculumService();
+                List<Curriculum> curriculumList = curriculumService.selectCurriculumByUserId(userId);
 
                 JSONResponse = new ObjectMapper().writer().writeValueAsString(curriculumList);
             }
@@ -41,7 +41,7 @@ public class GetCurriculumList implements ICommand {
 
         // Add the required response header for a JSON Response
         Headers headers = httpExchange.getResponseHeaders();
-        headers.add("Content-Type", "appication/json");
+        headers.add("Content-Type", "application/json");
 
         httpExchange.sendResponseHeaders(200, JSONResponse.getBytes().length);
         OutputStream outputStream = httpExchange.getResponseBody();

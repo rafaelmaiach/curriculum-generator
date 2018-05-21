@@ -13,10 +13,10 @@ import java.io.*;
 public class DownloadCurriculum implements ICommand {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
-        String JSONString = Helper.getJSONfromHttpExchange(httpExchange);
+        String JSONRequest = Helper.getJSONfromHttpExchange(httpExchange);
 
         //JSON from String to Object
-        Curriculum curriculum = new ObjectMapper().readValue(JSONString, Curriculum.class);
+        Curriculum curriculum = new ObjectMapper().readValue(JSONRequest, Curriculum.class);
 
         //Set default name at user's curriculum If not defined
         String userName = curriculum.getName();
