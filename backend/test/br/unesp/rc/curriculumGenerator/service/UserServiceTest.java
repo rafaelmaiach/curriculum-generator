@@ -43,6 +43,15 @@ public class UserServiceTest {
     }
 
     @Test
+    public void selectUserByLoginFailTest() {
+        UserService userService = FactoryService.getUserService();
+        User user = userService.selectUserByLogin("vedoveto", "notfound");
+
+        // Assert objects not null
+        Assert.assertNull(user);
+    }
+
+    @Test
     public void insertUserTest() {
         User userToBeInserted = generateUser();
 
