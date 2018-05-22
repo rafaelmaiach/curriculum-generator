@@ -347,6 +347,5 @@ public class CurriculumModel1 extends GenerateCurriculum {
 
     @Override
     protected void createDocumentFooter(XWPFDocument document, Curriculum curriculum) {
-        System.out.println("No Footer");
     }
 }
