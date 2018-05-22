@@ -3,6 +3,7 @@ package br.unesp.rc.curriculumGenerator.controller.servlet;
 import br.unesp.rc.curriculumGenerator.controller.command.DownloadCurriculum;
 import br.unesp.rc.curriculumGenerator.controller.command.GetCurriculumList;
 import br.unesp.rc.curriculumGenerator.controller.command.SignIn;
+import br.unesp.rc.curriculumGenerator.controller.command.UserRegistration;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ public class SrvController {
         server.createContext("/api/word", new DownloadCurriculum());
         server.createContext("/curriculums", new GetCurriculumList());
         server.createContext("/login", new SignIn());
+        server.createContext("/registration", new UserRegistration());
         server.setExecutor(null); // creates a default executor
         server.start();
     }

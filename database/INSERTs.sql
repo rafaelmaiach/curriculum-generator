@@ -5,7 +5,7 @@ INSERT INTO user(name, country, state, city) VALUES('Seu Nome', 'Brasil', 'São 
 INSERT INTO access(User_idUser, login, password) VALUES(1, 'vedoveto', '123456');
 
 -- Contact
-INSERT INTO contact(User_idUser, cellPhone, email, github, 	linkedin) VALUES(1, '(19) 9 98423-7308', 'brunoovedoveto@gmail.com', 'https://github.com/bleandro', null);
+INSERT INTO contact(User_idUser, cellPhone, email, github, linkedin) VALUES(1, '(19) 9 98423-7308', 'brunoovedoveto@gmail.com', 'https://github.com/bleandro', null);
 
 -- Curriculum 1
 INSERT INTO curriculum(User_idUser, name, country, state, city, cellPhone, email, github, linkedin, objective, summary) VALUES(
