@@ -3,22 +3,13 @@ package br.unesp.rc.curriculumGenerator.service;
 import br.unesp.rc.curriculumGenerator.model.Access;
 import br.unesp.rc.curriculumGenerator.model.Contact;
 import br.unesp.rc.curriculumGenerator.model.User;
-import org.junit.*;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class UserServiceTest {
-    User userToBeInserted;
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-        userToBeInserted = new User();
+    public User generateUser() {
+        User userToBeInserted = new User();
         userToBeInserted.setName("NAME TEST INSERT");
         userToBeInserted.setCountry("COUNTRY TEST INSERT");
         userToBeInserted.setState("STATE TEST INSERT");
@@ -36,10 +27,8 @@ public class UserServiceTest {
         access.setLogin(fakeLogin);
         access.setPassword("pass");
         userToBeInserted.setAccess(access);
-    }
 
-    @After
-    public void tearDown() {
+        return userToBeInserted;
     }
 
     @Test
@@ -55,9 +44,26 @@ public class UserServiceTest {
 
     @Test
     public void insertUserTest() {
+        User userToBeInserted = generateUser();
+
         UserService userService = FactoryService.getUserService();
         int userId = userService.insertUser(userToBeInserted);
 
         Assert.assertNotEquals(-1, userId);
+    }
+
+    @Test
+    public void insertUserDuplicateLoginTest() {
+        User userDuplicateLogin = generateUser();
+
+        UserService userService = FactoryService.getUserService();
+
+        // First time. No problem inserting.
+        int userId = userService.insertUser(userDuplicateLogin);
+        Assert.assertNotEquals(-1, userId);
+
+        // Second time. Exception will be generated and the "userId" will result -1
+        userId = userService.insertUser(userDuplicateLogin);
+        Assert.assertEquals(-1, userId);
     }
 }

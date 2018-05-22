@@ -86,6 +86,13 @@ public class UserDAOImpl implements UserDAO {
 
                 con.commit();
             } catch (SQLException ex) {
+
+                try {
+                    con.rollback();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
                 System.err.println("ERROR inserting user. Message: " + ex.getMessage());
                 return -1;
             }
