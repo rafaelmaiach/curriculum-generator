@@ -10,5 +10,11 @@ public interface UserDAO {
                     "WHERE a.login = ?" +
                     "      and a.password = ?";
 
+    final String INSERT_USER =
+            "INSERT INTO user(name, country, state, city) " +
+                    "VALUES(?, ?, ?, ?)";
+
     public abstract User selectUserByLogin(String login, String password);
+
+    public abstract int insertUser(User user);
 }

@@ -36,4 +36,15 @@ public class AccessDAOImpl implements AccessDAO {
 
         return accessReturn;
     }
+
+    @Override
+    public void insertAccess(Connection con, Access access, int userId) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        preparedStatement = con.prepareStatement(INSERT_ACCESS);
+
+        preparedStatement.setInt(1, userId);
+        preparedStatement.setString(2, access.getLogin());
+        preparedStatement.setString(3, access.getPassword());
+        preparedStatement.executeUpdate();
+    }
 }

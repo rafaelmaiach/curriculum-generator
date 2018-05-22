@@ -37,4 +37,17 @@ public class ContactDAOImpl implements ContactDAO {
 
         return contactReturn;
     }
+
+    @Override
+    public void insertContact(Connection con, Contact contact, int userId) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        preparedStatement = con.prepareStatement(INSERT_CONTACT);
+
+        preparedStatement.setInt(1, userId);
+        preparedStatement.setString(2, contact.getCellPhone());
+        preparedStatement.setString(3, contact.getEmail());
+        preparedStatement.setString(4, contact.getGithub());
+        preparedStatement.setString(5, contact.getLinkedin());
+        preparedStatement.executeUpdate();
+    }
 }

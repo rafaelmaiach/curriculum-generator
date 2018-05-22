@@ -19,4 +19,13 @@ public class UserServiceImpl implements UserService {
 
         return user;
     }
+
+    @Override
+    public int insertUser(User user) {
+        int userId = 0;
+
+        userId = this.userDAO.insertUser(user);
+
+        return userId;
+    }
 }

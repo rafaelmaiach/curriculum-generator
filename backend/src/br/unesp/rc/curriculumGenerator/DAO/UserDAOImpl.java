@@ -51,4 +51,46 @@ public class UserDAOImpl implements UserDAO {
 
         return userReturn;
     }
+
+    @Override
+    public int insertUser(User user) {
+        Connection con = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        int userId = -1;
+
+        con = FactoryConnection.getConnection();
+        if (con != null) {
+            try {
+                con.setAutoCommit(false);
+                preparedStatement = con.prepareStatement(INSERT_USER, PreparedStatement.RETURN_GENERATED_KEYS);
+
+                // Insert user
+                preparedStatement.setString(1, user.getName());
+                preparedStatement.setString(2, user.getCountry());
+                preparedStatement.setString(3, user.getState());
+                preparedStatement.setString(4, user.getCity());
+                preparedStatement.executeUpdate();
+                resultSet = preparedStatement.getGeneratedKeys();
+                while (resultSet.next()) {
+                    userId = resultSet.getInt(1);
+                }
+
+                // Insert access
+                AccessDAO accessDAO = new AccessDAOImpl();
+                accessDAO.insertAccess(con, user.getAccess(), userId);
+
+                // Insert contact
+                ContactDAO contactDAO = new ContactDAOImpl();
+                contactDAO.insertContact(con, user.getContact(), userId);
+
+                con.commit();
+            } catch (SQLException ex) {
+                System.err.println("ERROR inserting user. Message: " + ex.getMessage());
+                return -1;
+            }
+        }
+
+        return userId;
+    }
 }
