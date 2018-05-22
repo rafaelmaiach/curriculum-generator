@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface CurriculumService {
     public abstract List<Curriculum> selectCurriculumByUserId(int userId);
+
+    public abstract int insertCurriculum(Curriculum curriculum, int userId);
 }

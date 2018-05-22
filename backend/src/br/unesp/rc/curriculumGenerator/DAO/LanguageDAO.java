@@ -2,6 +2,8 @@ package br.unesp.rc.curriculumGenerator.DAO;
 
 import br.unesp.rc.curriculumGenerator.model.Language;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface LanguageDAO {
@@ -10,5 +12,11 @@ public interface LanguageDAO {
                     "FROM language l\n" +
                     "WHERE l.Curriculum_idCurriculum = ?";
 
+    final String INSERT_LANGUAGE =
+            "INSERT INTO language(Curriculum_idCurriculum, name, languageProeficiency)" +
+                    "VALUES (?, ?, ?)";
+
     public abstract List<Language> selectLanguageByCurriculumId(int curriculumId);
+
+    public abstract void insertLanguage(Connection con, Language language, int curriculumId) throws SQLException;
 }

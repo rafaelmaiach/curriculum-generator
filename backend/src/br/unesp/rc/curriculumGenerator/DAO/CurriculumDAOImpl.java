@@ -70,4 +70,78 @@ public class CurriculumDAOImpl implements CurriculumDAO {
 
         return curriculumList;
     }
+
+    @Override
+    public int insertCurriculum(Curriculum curriculum, int userId) {
+        Connection con = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        int curriculumId = -1;
+
+        AbilityDAO abilityDAO = FactoryDAO.getAbilityDAO();
+        FormationDAO formationDAO = FactoryDAO.getFormationDAO();
+        ProfessionalExperienceDAO professionalExperienceDAO = FactoryDAO.getProfessionalExperienceDAO();
+        LanguageDAO languageDAO = FactoryDAO.getLanguageDAO();
+
+        con = FactoryConnection.getConnection();
+        if (con != null) {
+            try {
+                con.setAutoCommit(false);
+                preparedStatement = con.prepareStatement(INSERT_CURRICULUM, PreparedStatement.RETURN_GENERATED_KEYS);
+
+                // Insert curriculum
+                preparedStatement.setInt(1, userId);
+                preparedStatement.setString(2, curriculum.getName());
+                preparedStatement.setString(3, curriculum.getCountry());
+                preparedStatement.setString(4, curriculum.getState());
+                preparedStatement.setString(5, curriculum.getCity());
+                preparedStatement.setString(6, curriculum.getCellPhone());
+                preparedStatement.setString(7, curriculum.getEmail());
+                preparedStatement.setString(8, curriculum.getGithub());
+                preparedStatement.setString(9, curriculum.getLinkedin());
+                preparedStatement.setString(10, curriculum.getObjective());
+                preparedStatement.setString(11, curriculum.getSummary());
+
+                preparedStatement.executeUpdate();
+                resultSet = preparedStatement.getGeneratedKeys();
+                while (resultSet.next()) {
+                    curriculumId = resultSet.getInt(1);
+                }
+
+                // Insert Ability
+                for (Ability ability : curriculum.getAbilities()) {
+                    abilityDAO.insertAbility(con, ability, curriculumId);
+                }
+
+                // Insert Formation
+                for (Formation formation : curriculum.getFormations()) {
+                    formationDAO.insertFormation(con, formation, curriculumId);
+                }
+
+                // Insert ProfessionalExperience
+                for (ProfessionalExperience professionalExperience : curriculum.getProfessionalExperiences()) {
+                    professionalExperienceDAO.insertProfessionalExperience(con, professionalExperience, curriculumId);
+                }
+
+                // Insert Language
+                for (Language language : curriculum.getLanguages()) {
+                    languageDAO.insertLanguage(con, language, curriculumId);
+                }
+
+                con.commit();
+            } catch (SQLException ex) {
+
+                try {
+                    con.rollback();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+                System.err.println("ERROR inserting user. Message: " + ex.getMessage());
+                return -1;
+            }
+        }
+
+        return curriculumId;
+    }
 }

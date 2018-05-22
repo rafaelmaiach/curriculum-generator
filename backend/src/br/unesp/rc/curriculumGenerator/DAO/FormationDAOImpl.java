@@ -44,4 +44,18 @@ public class FormationDAOImpl implements FormationDAO {
 
         return formationList;
     }
+
+    @Override
+    public void insertFormation(Connection con, Formation formation, int curriculumId) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        preparedStatement = con.prepareStatement(INSERT_FORMATION);
+
+        preparedStatement.setInt(1, curriculumId);
+        preparedStatement.setString(2, formation.getName());
+        preparedStatement.setString(3, formation.getInstitution());
+        preparedStatement.setString(4, formation.getStartDate());
+        preparedStatement.setString(5, formation.getFinalDate());
+        preparedStatement.setString(6, formation.getLocation());
+        preparedStatement.executeUpdate();
+    }
 }

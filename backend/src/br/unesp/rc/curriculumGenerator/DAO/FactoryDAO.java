@@ -20,4 +20,20 @@ public class FactoryDAO {
     public static CurriculumDAO getCurriculumDAO() {
         return new CurriculumDAOImpl();
     }
+
+    public static AbilityDAO getAbilityDAO() {
+        return new AbilityDAOImpl();
+    }
+
+    public static FormationDAO getFormationDAO() {
+        return new FormationDAOImpl();
+    }
+
+    public static ProfessionalExperienceDAO getProfessionalExperienceDAO() {
+        return new ProfessionalExperienceDAOImpl();
+    }
+
+    public static LanguageDAO getLanguageDAO() {
+        return new LanguageDAOImpl();
+    }
 }

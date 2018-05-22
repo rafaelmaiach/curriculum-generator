@@ -42,4 +42,16 @@ public class LanguageDAOImpl implements LanguageDAO {
 
         return languageList;
     }
+
+    @Override
+    public void insertLanguage(Connection con, Language language, int curriculumId) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        preparedStatement = con.prepareStatement(INSERT_LANGUAGE);
+
+        preparedStatement.setInt(1, curriculumId);
+        preparedStatement.setString(2, language.getName());
+        preparedStatement.setInt(3, language.getLanguageProeficiency().getValue());
+
+        preparedStatement.executeUpdate();
+    }
 }

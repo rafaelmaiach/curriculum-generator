@@ -35,12 +35,12 @@ public class UserDAOImpl implements UserDAO {
                     userReturn.setCity(resultSet.getString(5));
 
                     // Select access
-                    AccessDAO accessDAO = new AccessDAOImpl();
+                    AccessDAO accessDAO = FactoryDAO.getAccessDAO();
                     Access accessReturn = accessDAO.selectAccessByUserId(userReturn.getIdUser());
                     userReturn.setAccess(accessReturn);
 
                     // Select contact
-                    ContactDAO contactDAO = new ContactDAOImpl();
+                    ContactDAO contactDAO = FactoryDAO.getContactDAO();
                     Contact contactReturn = contactDAO.selectContactByUserId(userReturn.getIdUser());
                     userReturn.setContact(contactReturn);
                 }
@@ -77,11 +77,11 @@ public class UserDAOImpl implements UserDAO {
                 }
 
                 // Insert access
-                AccessDAO accessDAO = new AccessDAOImpl();
+                AccessDAO accessDAO = FactoryDAO.getAccessDAO();
                 accessDAO.insertAccess(con, user.getAccess(), userId);
 
                 // Insert contact
-                ContactDAO contactDAO = new ContactDAOImpl();
+                ContactDAO contactDAO = FactoryDAO.getContactDAO();
                 contactDAO.insertContact(con, user.getContact(), userId);
 
                 con.commit();

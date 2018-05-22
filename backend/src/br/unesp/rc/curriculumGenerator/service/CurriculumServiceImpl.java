@@ -21,4 +21,13 @@ public class CurriculumServiceImpl implements CurriculumService {
 
         return curriculumList;
     }
+
+    @Override
+    public int insertCurriculum(Curriculum curriculum, int userId) {
+        int curriculumId = 0;
+
+        curriculumId = this.curriculumDAO.insertCurriculum(curriculum, userId);
+
+        return curriculumId;
+    }
 }

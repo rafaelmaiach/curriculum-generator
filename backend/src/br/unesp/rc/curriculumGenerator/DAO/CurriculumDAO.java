@@ -10,5 +10,11 @@ public interface CurriculumDAO {
                     "FROM curriculum c\n" +
                     "WHERE c.User_idUser = ?";
 
+    final String INSERT_CURRICULUM =
+            "INSERT INTO curriculum(User_idUser, name, country, state, city, cellPhone, email, github, linkedin, objective, summary)" +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
     public abstract List<Curriculum> selectCurriculumByUserId(int userId);
+
+    public abstract int insertCurriculum(Curriculum curriculum, int userId);
 }

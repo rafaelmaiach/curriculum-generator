@@ -46,4 +46,20 @@ public class ProfessionalExperienceDAOImpl implements ProfessionalExperienceDAO 
 
         return professionalExperienceList;
     }
+
+    @Override
+    public void insertProfessionalExperience(Connection con, ProfessionalExperience professionalExperience, int curriculumId) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        preparedStatement = con.prepareStatement(INSERT_PROFESSIONALEXPERIENCE);
+
+        preparedStatement.setInt(1, curriculumId);
+        preparedStatement.setString(2, professionalExperience.getJob());
+        preparedStatement.setString(3, professionalExperience.getStartDate());
+        preparedStatement.setString(4, professionalExperience.getFinalDate());
+        preparedStatement.setString(5, professionalExperience.getCompany());
+        preparedStatement.setString(6, professionalExperience.getLocation());
+        preparedStatement.setString(7, professionalExperience.getJobDescription());
+
+        preparedStatement.executeUpdate();
+    }
 }

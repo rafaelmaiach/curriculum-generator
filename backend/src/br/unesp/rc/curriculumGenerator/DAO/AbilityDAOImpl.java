@@ -40,4 +40,14 @@ public class AbilityDAOImpl implements AbilityDAO {
 
         return abilityList;
     }
+
+    @Override
+    public void insertAbility(Connection con, Ability ability, int curriculumId) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        preparedStatement = con.prepareStatement(INSERT_ABILITY);
+
+        preparedStatement.setInt(1, curriculumId);
+        preparedStatement.setString(2, ability.getName());
+        preparedStatement.executeUpdate();
+    }
 }
