@@ -10,7 +10,7 @@ import com.sun.net.httpserver.HttpExchange;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class UserRegistration implements ICommand {
+public class RegisterUser implements ICommand {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
         String JSONRequest = Helper.getJSONfromHttpExchange(httpExchange);

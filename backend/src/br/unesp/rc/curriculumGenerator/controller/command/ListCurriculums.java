@@ -13,7 +13,7 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 
-public class GetCurriculumList implements ICommand {
+public class ListCurriculums implements ICommand {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
