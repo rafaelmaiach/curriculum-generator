@@ -9,7 +9,6 @@ const getCustomFetchConfigUsing = (options, method = 'POST') => {
   const config = {
     method,
     headers: {
-      Accept: 'application/json',
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(options),
@@ -25,7 +24,7 @@ const getCustomFetchConfigUsing = (options, method = 'POST') => {
  * @returns {String} Final API url
  */
 const createUrlFrom = (path) => {
-  const baseUrl = 'http://localhost:8001';
+  const baseUrl = 'http://localhost:8000';
   const url = `${baseUrl}${path}`;
 
   return url;
@@ -42,7 +41,6 @@ const createPromiseFor = ({ path, params, method }) => {
   const defaultParams = {
     method: method || 'GET',
     headers: {
-      Accept: 'application/json',
       'Content-Type': 'application/json',
     },
   };

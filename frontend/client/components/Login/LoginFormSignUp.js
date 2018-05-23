@@ -1,18 +1,7 @@
-/**
- * Login
-Password
-Name
-Country
-State
-City
-Cellphone
-Email
-GitHub
-Linkedin
- */
-
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+
+import { registerUser } from '../../api';
 
 /**
  * @override
@@ -21,18 +10,50 @@ import { withRouter } from 'react-router-dom';
 class LoginFormSignUp extends Component {
   state = {
     account: {
-      username: '',
-      password: '',
       name: '',
       city: '',
       state: '',
       country: '',
+      username: '',
+      password: '',
       phone: '',
       email: '',
-      gitHub: '',
+      github: '',
       linkedin: '',
     },
     error: false,
+  }
+
+  mapRegisterInfo = () => {
+    const {
+      name,
+      city,
+      state,
+      country,
+      username,
+      password,
+      phone,
+      email,
+      github,
+      linkedin,
+    } = this.state.account;
+
+    return {
+      name,
+      city,
+      state,
+      country,
+      access: {
+        login: username,
+        password,
+      },
+      contact: {
+        cellPhone: phone,
+        email,
+        github,
+        linkedin,
+      },
+    };
   }
 
   handleInput = ({ target }) => {
@@ -44,12 +65,17 @@ class LoginFormSignUp extends Component {
 
   submitSignUp = () => {
     const { username, password } = this.state.account;
-    console.log(this.state);
     const validUsername = username.length > 0;
     const validPassword = password.length > 0;
 
     if (validUsername && validPassword) {
       this.setState(() => ({ error: false }));
+
+      const registerInfo = this.mapRegisterInfo();
+
+      registerUser(registerInfo)
+        .then(result => console.log(result))
+        .catch(error => console.log(`Error on registerUser: ${error.message}`));
     } else {
       this.setState(() => ({ error: true }));
     }
@@ -68,9 +94,9 @@ class LoginFormSignUp extends Component {
       'city',
       'state',
       'country',
-      'cellphone',
+      'phone',
       'email',
-      'gitHub',
+      'github',
       'linkedin',
     ];
 
@@ -79,7 +105,11 @@ class LoginFormSignUp extends Component {
         <div className="form-input">
           {`${e[0].toUpperCase()}${e.substr(1)}`}
         </div>
-        <input name={e} type="text" onChange={this.handleInput} />
+        <input
+          name={e}
+          type={e === 'password' ? 'password' : 'text'}
+          onChange={this.handleInput}
+        />
       </div>
     ));
 

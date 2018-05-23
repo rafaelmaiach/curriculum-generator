@@ -15,6 +15,15 @@ import java.io.OutputStream;
 public class SignIn implements ICommand {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
+        httpExchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+
+        if (httpExchange.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
+            httpExchange.getResponseHeaders().add("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+            httpExchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type,Authorization");
+            httpExchange.sendResponseHeaders(204, -1);
+            return;
+        }
+        
         String JSONRequest = Helper.getJSONfromHttpExchange(httpExchange);
         String JSONResponse = "";
 
