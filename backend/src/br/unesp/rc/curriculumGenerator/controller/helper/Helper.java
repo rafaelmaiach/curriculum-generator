@@ -3,6 +3,7 @@ package br.unesp.rc.curriculumGenerator.controller.helper;
 import com.sun.net.httpserver.HttpExchange;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,5 +42,18 @@ public class Helper {
 
         }
         return result;
+    }
+
+    public static boolean isRequestMethodOptions(HttpExchange httpExchange) throws IOException {
+        httpExchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+
+        if (httpExchange.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
+            httpExchange.getResponseHeaders().add("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+            httpExchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type,Authorization");
+            httpExchange.sendResponseHeaders(204, -1);
+            return true;
+        }
+
+        return false;
     }
 }
