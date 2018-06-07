@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import { registerUser } from '../../api';
+import { showToastr } from '../Toastr/Toastr';
 
 /**
  * @override
@@ -63,6 +64,31 @@ class LoginFormSignUp extends Component {
     this.setState(() => returnObj);
   }
 
+  handleSignUp = (error, message) => {
+    if (error) {
+      showToastr('ERROR REGISTER!', 'error');
+      console.log(`Error on registerUser: ${message}`);
+    } else {
+      showToastr('SUCCESS REGISTER!', 'success');
+    }
+
+    this.setState(() => ({
+      account: {
+        username: '',
+        password: '',
+        name: '',
+        city: '',
+        state: '',
+        country: '',
+        phone: '',
+        email: '',
+        github: '',
+        linkedin: '',
+      },
+      error,
+    }));
+  }
+
   submitSignUp = () => {
     const { username, password } = this.state.account;
     const validUsername = username.length > 0;
@@ -74,8 +100,8 @@ class LoginFormSignUp extends Component {
       const registerInfo = this.mapRegisterInfo();
 
       registerUser(registerInfo)
-        .then(result => console.log(result))
-        .catch(error => console.log(`Error on registerUser: ${error.message}`));
+        .then(() => this.handleSignUp(false))
+        .catch(error => this.handleSignUp(true, error.message));
     } else {
       this.setState(() => ({ error: true }));
     }
@@ -108,6 +134,7 @@ class LoginFormSignUp extends Component {
         <input
           name={e}
           type={e === 'password' ? 'password' : 'text'}
+          value={this.state.account[e]}
           onChange={this.handleInput}
         />
       </div>
