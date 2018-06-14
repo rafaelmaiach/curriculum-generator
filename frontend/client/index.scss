@@ -1,9 +1,12 @@
-// Style helpers
+// Helpers
 @import './style-helpers/variables.scss';
 @import './style-helpers/reset.scss';
 
-// Curriculum styles
+// Curriculum
 @import './components/Curriculum/curriculum-form.scss';
 
-// Login styles
+// Login
 @import './components/Login/login.scss';
+
+// Toastr
+@import '/components/Toastr/toastr.scss';

@@ -18,19 +18,30 @@ class LoginFormSignIn extends Component {
     this.setState(() => ({ [target.name]: target.value }));
   }
 
-  submitLogin = () => {
+  submitLogin = async () => {
     const { username, password } = this.state;
-    const validUsername = username.length > 0;
-    const validPassword = password.length > 0;
+    const validUsername = (username.trim()).length > 0;
+    const validPassword = (password.trim()).length > 0;
 
     if (validUsername && validPassword) {
       this.setState(() => ({ error: false }));
-      AuthObject.authenticate(() => {
+      const params = {
+        login: username,
+        password,
+      };
+
+      const userId = await AuthObject.authenticate(params);
+
+      if (userId) {
         this.props.history.push('/curriculum');
-      });
-    } else {
-      this.setState(() => ({ error: true }));
+      } else {
+        this.setState(() => ({ error: true }));
+      }
+
+      return;
     }
+
+    this.setState(() => ({ error: true }));
   }
 
   /**

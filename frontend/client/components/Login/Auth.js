@@ -1,35 +1,25 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { signIn } from '../../api';
 
 const AuthObject = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true;
-    setTimeout(cb, 100);
-  },
-  signout(cb) {
-    this.isAuthenticated = false;
-    setTimeout(cb, 100);
+  userId: null,
+  async authenticate(params) {
+    const self = this;
+
+    await signIn(params)
+      .then((result) => {
+        if (result !== null) {
+          self.userId = result;
+        }
+      })
+      .catch((error) => {
+        self.userId = null;
+        console.log(error.message);
+      });
+
+    return self.userId;
   },
 };
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props => (
-      AuthObject.isAuthenticated === true
-        ? <Component {...props} />
-        : <Redirect to={{
-            pathname: '/',
-            state: { from: props.location },
-          }}
-        />
-      )
-    }
-  />
-);
-
 module.exports = {
   AuthObject,
-  PrivateRoute,
 };

@@ -1,0 +1,40 @@
+.toastr {
+  position: fixed;
+  top: -50px;
+  height: 50px;
+  width: 100%;
+  transition: all 300ms;
+  z-index: 99999999;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__item {
+    width: auto;
+    color: white;
+    font-size: 16px;
+    padding: 15px 20px;
+
+    &--success {
+      background: #88EDA0;
+      color: #123b22;
+      box-shadow: inset 0px -5px darken(#88EDA0, 3);
+    }
+
+    &--error {
+      background: #FF5C49;
+      box-shadow: inset 0px -5px darken(#FF5C49, 3);
+    }
+
+    &--waiting {
+      background: #E0F0F2;
+      color: $primary-color-blue;
+      box-shadow: inset 0px -5px darken(#E0F0F2, 3);
+    }
+  }
+
+  &--active {
+    top: 40px;
+  }
+}
