@@ -31,6 +31,9 @@ public class SignIn implements ICommand {
             UserService userService = FactoryService.getUserService();
             User user = userService.selectUserByLogin(login, password);
 
+            //Don't return Access to Frontend
+            user.setAccess(null);
+
             JSONResponse = new ObjectMapper().writer().writeValueAsString(user);
         }
 
