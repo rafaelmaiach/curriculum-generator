@@ -4,7 +4,20 @@ import React, { Component } from 'react';
  * @class CurriculumForm
  */
 class CurriculumForm extends Component {
-  state = {}
+  state = {
+    userId: null,
+  }
+
+  /**
+   * @method CurriculumForm#componentDidMount
+   */
+  componentDidMount() {
+    this.setUserId();
+  }
+
+  setUserId = () => {
+    this.setState(() => ({ userId: window.userId }));
+  }
 
   /**
    * @method CurriculumForm#render

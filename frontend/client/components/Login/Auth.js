@@ -1,25 +1,31 @@
 import { signIn } from '../../api';
 
-const AuthObject = {
-  userId: null,
-  async authenticate(params) {
+/**
+ * @class Auth
+ */
+class Auth {
+  userId = null;
+
+  getUserId = () => this.userId;
+
+  /**
+   * @method Auth#login
+   * @param {object} params - Contains username and password
+   */
+  async login(params) {
     const self = this;
 
     await signIn(params)
       .then((result) => {
         if (result !== null) {
-          self.userId = result;
+          self.userId = result.idUser;
         }
       })
       .catch((error) => {
         self.userId = null;
         console.log(error.message);
       });
+  }
+}
 
-    return self.userId;
-  },
-};
-
-module.exports = {
-  AuthObject,
-};
+module.exports = Auth;

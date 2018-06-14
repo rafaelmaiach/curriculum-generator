@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
-import { AuthObject } from './Auth';
+import Auth from './Auth';
 
 /**
  * @override
@@ -30,9 +30,14 @@ class LoginFormSignIn extends Component {
         password,
       };
 
-      const userId = await AuthObject.authenticate(params);
+      const authInstance = new Auth();
+
+      await authInstance.login(params);
+
+      const userId = authInstance.getUserId();
 
       if (userId) {
+        window.userId = userId;
         this.props.history.push('/curriculum');
       } else {
         this.setState(() => ({ error: true }));

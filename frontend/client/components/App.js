@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Toastr from '../components/Toastr/Toastr';
 import LoginScreen from './Login/LoginScreen';
-import CurriculumForm from './Curriculum/CurriculumForm';
+import CurriculumMenu from './Curriculum/CurriculumMenu';
 
 import '../index.scss';
 
@@ -21,7 +21,7 @@ class App extends Component {
         <Toastr key="appToastr" />
         <Switch>
           <Route exact path="/" component={LoginScreen} />
-          <Route path="/curriculum" component={CurriculumForm} />
+          <Route path="/curriculum" component={CurriculumMenu} />
         </Switch>
       </Fragment>
     );
