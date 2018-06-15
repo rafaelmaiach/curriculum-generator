@@ -27,8 +27,20 @@ const signIn = (params) => {
   return createPromiseFor({ path, params: options });
 };
 
+/**
+ * @method listCurriculums
+ * @description Sign in to site
+ * @param {Number} userId - User id
+ * @returns {Promise} Register result
+ */
+const listCurriculums = (userId) => {
+  const path = `/listCurriculums?userId=${userId}`;
+  return createPromiseFor({ path });
+};
+
 
 module.exports = {
   registerUser,
   signIn,
+  listCurriculums,
 };

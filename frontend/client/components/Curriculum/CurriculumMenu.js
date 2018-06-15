@@ -1,23 +1,38 @@
 import React, { Component } from 'react';
 
+import CurriculumBox from './CurriculumBox';
+import { listCurriculums } from '../../api';
+
 /**
  * @class CurriculumForm
  */
 class CurriculumForm extends Component {
   state = {
     userId: null,
+    curriculumsList: null,
   }
 
   /**
    * @method CurriculumForm#componentDidMount
    */
   componentDidMount() {
-    this.setUserId();
+    this.getCurriculums();
   }
 
-  setUserId = () => {
-    this.setState(() => ({ userId: window.userId }));
+  getCurriculums = () => {
+    this.setState(
+      () => ({ userId: window.userId }),
+      () => {
+        listCurriculums(this.state.userId)
+          .then(result => this.setState(() => ({ curriculumsList: result })))
+          .catch(error => console.log(error.message));
+      },
+    );
   }
+
+  createCurriculumBox = () => this.state.curriculumsList.map(data =>
+    <CurriculumBox key={data.idCurriculum} data={data} />);
+
 
   /**
    * @method CurriculumForm#render
@@ -25,9 +40,10 @@ class CurriculumForm extends Component {
    * @returns {HTML} CurriculumForm container
    */
   render() {
+    const { curriculumsList } = this.state;
     return (
       <div className="curriculum-form-container">
-        CurriculumForm
+        {curriculumsList ? this.createCurriculumBox() : null}
       </div>
     );
   }
