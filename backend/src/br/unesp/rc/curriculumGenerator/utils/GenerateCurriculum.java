@@ -12,12 +12,12 @@ public abstract class GenerateCurriculum {
     public File Export(Curriculum curriculum) throws IOException {
         String userName = curriculum.getName();
         if (!(userName == null || userName.isEmpty())) {
-            String TEST_CURRICULUM_PATH = "generatedCurriculum/";
+            final String CURRICULUM_PATH = "generatedCurriculum/";
             String curriculumFileName = userName + ".docx";
             curriculumFileName = curriculumFileName.replaceAll("[^a-zA-Z0-9.-]", "_");
 
-            Boolean dirCreated = new File(TEST_CURRICULUM_PATH).mkdirs();
-            File documentFile = new File(TEST_CURRICULUM_PATH + curriculumFileName);
+            new File(CURRICULUM_PATH).mkdirs(); //Create PATH
+            File documentFile = new File(CURRICULUM_PATH + curriculumFileName);
             FileOutputStream fileOutputStream = new FileOutputStream(documentFile);
 
             XWPFDocument document = new XWPFDocument();
