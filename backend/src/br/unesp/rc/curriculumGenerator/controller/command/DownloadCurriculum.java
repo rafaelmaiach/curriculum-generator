@@ -2,8 +2,8 @@ package br.unesp.rc.curriculumGenerator.controller.command;
 
 import br.unesp.rc.curriculumGenerator.controller.helper.Helper;
 import br.unesp.rc.curriculumGenerator.model.Curriculum;
-import br.unesp.rc.curriculumGenerator.utils.FactoryCurriculumModel;
-import br.unesp.rc.curriculumGenerator.utils.GenerateCurriculum;
+import br.unesp.rc.curriculumGenerator.service.CurriculumService;
+import br.unesp.rc.curriculumGenerator.service.FactoryService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
@@ -17,8 +17,8 @@ public class DownloadCurriculum implements ICommand {
     public void handle(HttpExchange httpExchange) throws IOException {
         if (Helper.isRequestMethodOptions(httpExchange))
             return;
-        
-        Object curriculumModel = -1; // Used to define with model will be generated and downloaded
+
+        Object curriculumModel = -1; // Used to define which model will be generated and downloaded
 
         String JSONRequest = Helper.getJSONfromHttpExchange(httpExchange);
 
@@ -41,13 +41,9 @@ public class DownloadCurriculum implements ICommand {
         //JSON from String to Object
         Curriculum curriculum = new ObjectMapper().readValue(JSONRequest, Curriculum.class);
 
-        //Set default name at user's curriculum If not defined
-        String userName = curriculum.getName();
-        if (userName == null || userName.isEmpty())
-            curriculum.setName("Default Name");
-
-        GenerateCurriculum generateCurriculum = FactoryCurriculumModel.getCurriculumModel((int) curriculumModel);
-        File generatedCurriculum = generateCurriculum.Export(curriculum);
+        //Generate DOC file using "Apache Poi"
+        CurriculumService curriculumService = FactoryService.getCurriculumService();
+        File generatedCurriculum = curriculumService.getCurriculumFile(curriculum, (int) curriculumModel);
 
         // Add the required response header for a Word file
         Headers headers = httpExchange.getResponseHeaders();

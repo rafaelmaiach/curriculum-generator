@@ -1,4 +1,4 @@
-package br.unesp.rc.curriculumGenerator.utils;
+package br.unesp.rc.curriculumGenerator.apachepoi.utils;
 
 import br.unesp.rc.curriculumGenerator.model.*;
 import org.apache.poi.wp.usermodel.HeaderFooterType;

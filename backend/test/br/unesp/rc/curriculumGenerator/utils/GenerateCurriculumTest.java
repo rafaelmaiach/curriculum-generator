@@ -1,5 +1,7 @@
 package br.unesp.rc.curriculumGenerator.utils;
 
+import br.unesp.rc.curriculumGenerator.apachepoi.utils.CurriculumModel1;
+import br.unesp.rc.curriculumGenerator.apachepoi.utils.GenerateCurriculum;
 import br.unesp.rc.curriculumGenerator.model.Curriculum;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.*;

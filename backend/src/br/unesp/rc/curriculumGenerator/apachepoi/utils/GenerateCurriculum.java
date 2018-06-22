@@ -1,4 +1,4 @@
-package br.unesp.rc.curriculumGenerator.utils;
+package br.unesp.rc.curriculumGenerator.apachepoi.utils;
 
 import br.unesp.rc.curriculumGenerator.model.Curriculum;
 import org.apache.poi.openxml4j.exceptions.InvalidOperationException;
