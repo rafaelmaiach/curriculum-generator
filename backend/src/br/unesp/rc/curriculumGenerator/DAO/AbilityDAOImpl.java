@@ -11,6 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AbilityDAOImpl implements AbilityDAO {
+
+    /**
+     * @param curriculumId The curriculums's Id to database
+     * @return The list of Abilities
+     */
     @Override
     public List<Ability> selectAbilityByCurriculumId(int curriculumId) {
         Connection con = FactoryConnection.getConnection();
@@ -41,6 +46,14 @@ public class AbilityDAOImpl implements AbilityDAO {
         return abilityList;
     }
 
+    /**
+     * Insert a new Ability to the database
+     *
+     * @param con          the connection to the database
+     * @param ability      Ability class with the informations that will be inserted to the database
+     * @param curriculumId The curriculum's Id that has the Ability
+     * @throws SQLException
+     */
     @Override
     public void insertAbility(Connection con, Ability ability, int curriculumId) throws SQLException {
         PreparedStatement preparedStatement = null;

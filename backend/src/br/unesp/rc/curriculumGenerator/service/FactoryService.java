@@ -1,7 +1,7 @@
 package br.unesp.rc.curriculumGenerator.service;
 
 /**
- * This class is used to create Services
+ * This class is used to create Services. It should never be instanciated. It just uses static methods.
  */
 public class FactoryService {
     public FactoryService() {
@@ -18,6 +18,7 @@ public class FactoryService {
 
     /**
      * Creates a CurriculumService
+     *
      * @return CurriculumService
      */
     public static CurriculumService getCurriculumService() {

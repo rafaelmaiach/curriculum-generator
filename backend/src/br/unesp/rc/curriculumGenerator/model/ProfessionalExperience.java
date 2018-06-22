@@ -47,6 +47,7 @@ public class ProfessionalExperience {
 
     /**
      * Sets the experience start date
+     *
      * @param startDate the experience start date
      */
     public void setStartDate(String startDate) {
@@ -62,6 +63,7 @@ public class ProfessionalExperience {
 
     /**
      * Sets the experience finak date
+     *
      * @param finalDate
      */
     public void setFinalDate(String finalDate) {
@@ -77,6 +79,7 @@ public class ProfessionalExperience {
 
     /**
      * Sets the company name
+     *
      * @param company the company name
      */
     public void setCompany(String company) {
@@ -92,6 +95,7 @@ public class ProfessionalExperience {
 
     /**
      * Sets the company location
+     *
      * @param location the company location
      */
     public void setLocation(String location) {
@@ -107,6 +111,7 @@ public class ProfessionalExperience {
 
     /**
      * Sets the job description
+     *
      * @param jobDescription the job description
      */
     public void setJobDescription(String jobDescription) {

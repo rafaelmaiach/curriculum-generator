@@ -10,6 +10,10 @@ import java.sql.SQLException;
 
 public class AccessDAOImpl implements AccessDAO {
 
+    /**
+     * @param userId The user's Id to database
+     * @return The user's Access
+     */
     @Override
     public Access selectAccessByUserId(int userId) {
         Connection con = FactoryConnection.getConnection();
@@ -37,6 +41,14 @@ public class AccessDAOImpl implements AccessDAO {
         return accessReturn;
     }
 
+    /**
+     * Insert a new Ability to the database
+     *
+     * @param con    the connection to the database
+     * @param access Ability class with the informations that will be inserted to the database
+     * @param userId The user's Id that owns the Access
+     * @throws SQLException
+     */
     @Override
     public void insertAccess(Connection con, Access access, int userId) throws SQLException {
         PreparedStatement preparedStatement = null;

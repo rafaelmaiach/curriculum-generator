@@ -48,7 +48,8 @@ public class CurriculumServiceImpl implements CurriculumService {
 
     /**
      * Uses "Apache Poi" to generate a ".docx" file to the given curriculum
-     * @param curriculum The curriculum to generate the file
+     *
+     * @param curriculum      The curriculum to generate the file
      * @param curriculumModel The model that will be used to generate.
      * @return The file that was generated
      * @throws IOException

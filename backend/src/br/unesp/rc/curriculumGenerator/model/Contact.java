@@ -43,6 +43,7 @@ public class Contact {
 
     /**
      * Sets the user's email
+     *
      * @param email the user's email
      */
     public void setEmail(String email) {
@@ -58,6 +59,7 @@ public class Contact {
 
     /**
      * Sets the user's github
+     *
      * @param github the user's github
      */
     public void setGithub(String github) {
@@ -73,6 +75,7 @@ public class Contact {
 
     /**
      * Sets the user's linkedin
+     *
      * @param linkedin
      */
     public void setLinkedin(String linkedin) {
@@ -88,6 +91,7 @@ public class Contact {
 
     /**
      * Sets the contact owner
+     *
      * @param user the contact owner
      */
     public void setUser(User user) {

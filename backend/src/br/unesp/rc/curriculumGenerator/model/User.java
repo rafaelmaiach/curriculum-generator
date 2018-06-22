@@ -53,6 +53,7 @@ public class User {
 
     /**
      * Sets the user's name
+     *
      * @param name the user's name
      */
     public void setName(String name) {
@@ -68,6 +69,7 @@ public class User {
 
     /**
      * Sets the country where the user lives
+     *
      * @param country the country where the user lives
      */
     public void setCountry(String country) {
@@ -83,6 +85,7 @@ public class User {
 
     /**
      * Sets the state where the user lives
+     *
      * @param state the state where the user lives
      */
     public void setState(String state) {
@@ -98,6 +101,7 @@ public class User {
 
     /**
      * Sets the city where the user lives
+     *
      * @param city the city where the user lives
      */
     public void setCity(String city) {
@@ -113,6 +117,7 @@ public class User {
 
     /**
      * Sets the user's Access
+     *
      * @param access the user's Access
      */
     public void setAccess(Access access) {
@@ -128,6 +133,7 @@ public class User {
 
     /**
      * Sets the user's list of curriculums
+     *
      * @param curriculums Curriculum List
      */
     public void setCurriculums(List<Curriculum> curriculums) {
@@ -136,6 +142,7 @@ public class User {
 
     /**
      * Add a curriculum to the user's list of curriculums
+     *
      * @param curriculum curriculum to be added
      */
     public void addCurriculum(Curriculum curriculum) {
@@ -151,6 +158,7 @@ public class User {
 
     /**
      * Sets the user's contact
+     *
      * @param contact the user's contact
      */
     public void setContact(Contact contact) {

@@ -11,6 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProfessionalExperienceDAOImpl implements ProfessionalExperienceDAO {
+
+    /**
+     * @param curriculumId The curriculums's Id to database
+     * @return The list of Professional Experiences
+     */
     @Override
     public List<ProfessionalExperience> selectProfessionalExperienceByCurriculumId(int curriculumId) {
         Connection con = FactoryConnection.getConnection();
@@ -47,6 +52,14 @@ public class ProfessionalExperienceDAOImpl implements ProfessionalExperienceDAO 
         return professionalExperienceList;
     }
 
+    /**
+     * Insert a new Professional Experience to the database
+     *
+     * @param con                    the connection to the database
+     * @param professionalExperience Professional Experience class with the informations that will be inserted to the database
+     * @param curriculumId           The curriculum's Id that has the Professional Experience
+     * @throws SQLException
+     */
     @Override
     public void insertProfessionalExperience(Connection con, ProfessionalExperience professionalExperience, int curriculumId) throws SQLException {
         PreparedStatement preparedStatement = null;

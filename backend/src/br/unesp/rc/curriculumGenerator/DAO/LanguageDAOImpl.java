@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LanguageDAOImpl implements LanguageDAO {
+
+    /**
+     * @param curriculumId The curriculums's Id to database
+     * @return The list of Languages
+     */
     @Override
     public List<Language> selectLanguageByCurriculumId(int curriculumId) {
         Connection con = FactoryConnection.getConnection();
@@ -43,6 +48,14 @@ public class LanguageDAOImpl implements LanguageDAO {
         return languageList;
     }
 
+    /**
+     * Insert a new Language to the database
+     *
+     * @param con          the connection to the database
+     * @param language     Language class with the informations that will be inserted to the database
+     * @param curriculumId The curriculum's Id that has the Language
+     * @throws SQLException
+     */
     @Override
     public void insertLanguage(Connection con, Language language, int curriculumId) throws SQLException {
         PreparedStatement preparedStatement = null;

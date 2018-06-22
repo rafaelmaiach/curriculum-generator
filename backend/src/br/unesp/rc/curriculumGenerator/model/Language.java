@@ -41,11 +41,12 @@ public class Language {
 
     /**
      * Sets the Language Proeficiency
+     *
      * @param languageProeficiency the language proeficiency
-     * LanguageProeficiency.BASIC
-     * LanguageProeficiency.INTERMEDIARY
-     * LanguageProeficiency.ADVANCED
-     * LanguageProeficiency.FLUENT
+     *                             LanguageProeficiency.BASIC
+     *                             LanguageProeficiency.INTERMEDIARY
+     *                             LanguageProeficiency.ADVANCED
+     *                             LanguageProeficiency.FLUENT
      */
     public void setLanguageProeficiency(LanguageProeficiency languageProeficiency) {
         this.languageProeficiency = languageProeficiency;

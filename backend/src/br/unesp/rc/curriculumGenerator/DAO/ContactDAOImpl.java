@@ -9,6 +9,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ContactDAOImpl implements ContactDAO {
+
+    /**
+     * @param userId The user's Id to database
+     * @return The The user's Contact
+     */
     @Override
     public Contact selectContactByUserId(int userId) {
         Connection con = FactoryConnection.getConnection();
@@ -38,6 +43,14 @@ public class ContactDAOImpl implements ContactDAO {
         return contactReturn;
     }
 
+    /**
+     * Insert a new Ability to the database
+     *
+     * @param con     the connection to the database
+     * @param contact Contact class with the informations that will be inserted to the database
+     * @param userId  The user's Id that owns the contact
+     * @throws SQLException
+     */
     @Override
     public void insertContact(Connection con, Contact contact, int userId) throws SQLException {
         PreparedStatement preparedStatement = null;

@@ -11,6 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FormationDAOImpl implements FormationDAO {
+
+    /**
+     * @param curriculumId The curriculums's Id to database
+     * @return The list of Formations
+     */
     @Override
     public List<Formation> selectFormationByCurriculumId(int curriculumId) {
         Connection con = FactoryConnection.getConnection();
@@ -45,6 +50,14 @@ public class FormationDAOImpl implements FormationDAO {
         return formationList;
     }
 
+    /**
+     * Insert a new Formation to the database
+     *
+     * @param con          the connection to the database
+     * @param formation    Formation class with the informations that will be inserted to the database
+     * @param curriculumId The curriculum's Id that has the Ability
+     * @throws SQLException
+     */
     @Override
     public void insertFormation(Connection con, Formation formation, int curriculumId) throws SQLException {
         PreparedStatement preparedStatement = null;

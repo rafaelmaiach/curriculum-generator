@@ -39,6 +39,7 @@ public class Access {
 
     /**
      * Sets the password
+     *
      * @param password the password to set
      */
     public void setPassword(String password) {
@@ -54,6 +55,7 @@ public class Access {
 
     /**
      * Sets the Access owner
+     *
      * @param user the user class
      */
     public void setUser(User user) {

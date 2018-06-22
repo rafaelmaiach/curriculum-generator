@@ -11,6 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CurriculumDAOImpl implements CurriculumDAO {
+
+    /**
+     * @param userId The user's Id to database
+     * @return The user's List of Curriculums
+     */
     @Override
     public List<Curriculum> selectCurriculumByUserId(int userId) {
         Connection con = FactoryConnection.getConnection();
@@ -71,6 +76,13 @@ public class CurriculumDAOImpl implements CurriculumDAO {
         return curriculumList;
     }
 
+    /**
+     * Insert a new Curriculum to the database
+     *
+     * @param curriculum Curriculum class with the informations that will be inserted to the database
+     * @param userId     The user's Id that owns the Curriculum
+     * @throws SQLException
+     */
     @Override
     public int insertCurriculum(Curriculum curriculum, int userId) {
         Connection con = null;

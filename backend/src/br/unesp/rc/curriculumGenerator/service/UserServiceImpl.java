@@ -27,6 +27,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * Insert a new User to the database
+     *
      * @param user The User class with the informations that will be inserted to the database
      * @return The new user Id in the databasse if successfull. -1 if failed.
      */
