@@ -2,9 +2,9 @@ package br.unesp.rc.curriculumGenerator.service;
 
 import br.unesp.rc.curriculumGenerator.DAO.CurriculumDAO;
 import br.unesp.rc.curriculumGenerator.DAO.FactoryDAO;
+import br.unesp.rc.curriculumGenerator.apachepoi.utils.FactoryCurriculumModel;
 import br.unesp.rc.curriculumGenerator.apachepoi.utils.GenerateCurriculum;
 import br.unesp.rc.curriculumGenerator.model.Curriculum;
-import br.unesp.rc.curriculumGenerator.utils.FactoryCurriculumModel;
 
 import java.io.File;
 import java.io.IOException;

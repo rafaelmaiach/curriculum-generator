@@ -1,7 +1,4 @@
-package br.unesp.rc.curriculumGenerator.utils;
-
-import br.unesp.rc.curriculumGenerator.apachepoi.utils.CurriculumModel1;
-import br.unesp.rc.curriculumGenerator.apachepoi.utils.GenerateCurriculum;
+package br.unesp.rc.curriculumGenerator.apachepoi.utils;
 
 public class FactoryCurriculumModel {
     public static GenerateCurriculum getCurriculumModel(int model) {
