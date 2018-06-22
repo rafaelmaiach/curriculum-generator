@@ -17,6 +17,10 @@ public class CurriculumServiceImpl implements CurriculumService {
         this.curriculumDAO = FactoryDAO.getCurriculumDAO();
     }
 
+    /**
+     * @param userId The user's Id to database
+     * @return The list of curriculum to the user
+     */
     @Override
     public List<Curriculum> selectCurriculumByUserId(int userId) {
         List<Curriculum> curriculumList = null;
@@ -26,6 +30,13 @@ public class CurriculumServiceImpl implements CurriculumService {
         return curriculumList;
     }
 
+    /**
+     * Insert a new curriculum to the database
+     *
+     * @param curriculum Curriculum class with the informations that will be inserted to the database
+     * @param userId     The user's Id that owns the Curriculum
+     * @return The new Curriculum Id in the databasse if successfull. -1 if failed.
+     */
     @Override
     public int insertCurriculum(Curriculum curriculum, int userId) {
         int curriculumId = 0;
@@ -35,6 +46,13 @@ public class CurriculumServiceImpl implements CurriculumService {
         return curriculumId;
     }
 
+    /**
+     * Uses "Apache Poi" to generate a ".docx" file to the given curriculum
+     * @param curriculum The curriculum to generate the file
+     * @param curriculumModel The model that will be used to generate.
+     * @return The file that was generated
+     * @throws IOException
+     */
     @Override
     public File getCurriculumFile(Curriculum curriculum, int curriculumModel) throws IOException {
         //Set default name at user's curriculum If not defined
