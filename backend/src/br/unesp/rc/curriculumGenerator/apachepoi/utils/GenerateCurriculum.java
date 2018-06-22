@@ -8,11 +8,25 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/**
+ * This abstract class is used to define the basic steps to generate a curriculum file.
+ * All Curriculum Model class should extends this.
+ */
 public abstract class GenerateCurriculum {
+    private final static String CURRICULUM_PATH = "generatedCurriculum/";
+    protected XWPFDocument document;
+
+    /**
+     * The generated ".docx" file is exported to the path: $PROJECT\generatedCurriculum\
+     *
+     * @param curriculum The curriculum to generate the file.
+     * @return The "File" class with the instance to the ".docx" file generated.
+     * @throws IOException
+     * @throws InvalidOperationException Curriculum's user is not defined
+     */
     public File Export(Curriculum curriculum) throws IOException {
         String userName = curriculum.getName();
         if (!(userName == null || userName.isEmpty())) {
-            final String CURRICULUM_PATH = "generatedCurriculum/";
             String curriculumFileName = userName + ".docx";
             curriculumFileName = curriculumFileName.replaceAll("[^a-zA-Z0-9.-]", "_");
 
@@ -20,11 +34,11 @@ public abstract class GenerateCurriculum {
             File documentFile = new File(CURRICULUM_PATH + curriculumFileName);
             FileOutputStream fileOutputStream = new FileOutputStream(documentFile);
 
-            XWPFDocument document = new XWPFDocument();
+            this.document = new XWPFDocument();
 
-            createDocumentHeader(document, curriculum);
-            createDocumentContent(document, curriculum);
-            createDocumentFooter(document, curriculum);
+            createDocumentHeader(curriculum);
+            createDocumentContent(curriculum);
+            createDocumentFooter(curriculum);
 
             document.write(fileOutputStream);
             fileOutputStream.close();
@@ -34,9 +48,24 @@ public abstract class GenerateCurriculum {
             throw new InvalidOperationException("Curriculum's user not defined");
     }
 
-    protected abstract void createDocumentHeader(XWPFDocument document, Curriculum curriculum);
+    /**
+     * Creates the Document Header
+     *
+     * @param curriculum The curriculum to generate the file.
+     */
+    protected abstract void createDocumentHeader(Curriculum curriculum);
 
-    protected abstract void createDocumentContent(XWPFDocument document, Curriculum curriculum);
+    /**
+     * Creates the Document Content
+     *
+     * @param curriculum The curriculum to generate the file.
+     */
+    protected abstract void createDocumentContent(Curriculum curriculum);
 
-    protected abstract void createDocumentFooter(XWPFDocument document, Curriculum curriculum);
+    /**
+     * Creates the Document Footer
+     *
+     * @param curriculum The curriculum to generate the file.
+     */
+    protected abstract void createDocumentFooter(Curriculum curriculum);
 }

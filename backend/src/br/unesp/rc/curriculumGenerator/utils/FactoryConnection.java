@@ -2,12 +2,19 @@ package br.unesp.rc.curriculumGenerator.utils;
 
 import java.sql.*;
 
+/**
+ * Class used to Connect to MySQL DataBase
+ */
 public class FactoryConnection implements IMySQL {
 
     private FactoryConnection() {
-
     }
 
+    /**
+     * Creates a connection to Database
+     *
+     * @return the connection created
+     */
     public static Connection getConnection() {
         Connection con = null;
 

@@ -10,9 +10,9 @@ import java.util.List;
 
 public class CurriculumModel1 extends GenerateCurriculum {
     @Override
-    protected void createDocumentHeader(XWPFDocument document, Curriculum curriculum) {
+    protected void createDocumentHeader(Curriculum curriculum) {
         //Create the table that has the name inside the header
-        XWPFHeader header = document.createHeader(HeaderFooterType.FIRST);
+        XWPFHeader header = this.document.createHeader(HeaderFooterType.FIRST);
         XWPFTable headerTable = header.createTable(1, 1);
 
         //Set borders
@@ -92,23 +92,23 @@ public class CurriculumModel1 extends GenerateCurriculum {
         }
 
         //Separator
-        this.addLineSeparator(document);
+        this.addLineSeparator();
     }
 
     @Override
-    protected void createDocumentContent(XWPFDocument document, Curriculum curriculum) {
-        createObjectiveSection(document, curriculum);
-        createSummarySection(document, curriculum);
-        createAbilitySection(document, curriculum);
-        createFormationSection(document, curriculum);
-        createLanguagesSection(document, curriculum);
-        createExperienceSection(document, curriculum);
+    protected void createDocumentContent(Curriculum curriculum) {
+        createObjectiveSection(curriculum);
+        createSummarySection(curriculum);
+        createAbilitySection(curriculum);
+        createFormationSection(curriculum);
+        createLanguagesSection(curriculum);
+        createExperienceSection(curriculum);
     }
 
-    private void createObjectiveSection(XWPFDocument document, Curriculum curriculum) {
-        document.createParagraph();
+    private void createObjectiveSection(Curriculum curriculum) {
+        this.document.createParagraph();
 
-        XWPFParagraph objectiveParagraph = document.createParagraph();
+        XWPFParagraph objectiveParagraph = this.document.createParagraph();
         objectiveParagraph.setIndentationLeft(249 * 5);
         objectiveParagraph.setIndentationFirstLine(-249 * 5);
         XWPFRun objectiveTitle = objectiveParagraph.createRun();
@@ -125,13 +125,13 @@ public class CurriculumModel1 extends GenerateCurriculum {
         objectiveText.setText(curriculum.getObjective());
 
         //Separator
-        this.addLineSeparator(document);
+        this.addLineSeparator();
     }
 
-    private void createSummarySection(XWPFDocument document, Curriculum curriculum) {
-        document.createParagraph();
+    private void createSummarySection(Curriculum curriculum) {
+        this.document.createParagraph();
 
-        XWPFParagraph summaryParagraph = document.createParagraph();
+        XWPFParagraph summaryParagraph = this.document.createParagraph();
         summaryParagraph.setIndentationLeft(249 * 5);
         summaryParagraph.setIndentationFirstLine(-249 * 5);
         summaryParagraph.setAlignment(ParagraphAlignment.BOTH);
@@ -151,14 +151,14 @@ public class CurriculumModel1 extends GenerateCurriculum {
         summaryText.setText(curriculum.getSummary());
 
         //Separator
-        this.addLineSeparator(document);
+        this.addLineSeparator();
     }
 
-    private void createAbilitySection(XWPFDocument document, Curriculum curriculum) {
-        document.createParagraph();
+    private void createAbilitySection(Curriculum curriculum) {
+        this.document.createParagraph();
         List<Ability> abilities = curriculum.getAbilities();
 
-        XWPFParagraph abilityParagraph = document.createParagraph();
+        XWPFParagraph abilityParagraph = this.document.createParagraph();
         abilityParagraph.setIndentationLeft(191 * 5);
         abilityParagraph.setSpacingAfter(11 * 5);
 
@@ -179,13 +179,13 @@ public class CurriculumModel1 extends GenerateCurriculum {
         cTLvl.addNewStart().setVal(BigInteger.valueOf(1));
 
         XWPFAbstractNum abstractNum = new XWPFAbstractNum(cTAbstractNum);
-        XWPFNumbering numbering = document.createNumbering();
+        XWPFNumbering numbering = this.document.createNumbering();
         BigInteger abstractNumID = numbering.addAbstractNum(abstractNum);
         BigInteger numID = numbering.addNum(abstractNumID);
 
         //Adds all abilities at the list
         for (Ability ability : abilities) {
-            XWPFParagraph paragraph = document.createParagraph();
+            XWPFParagraph paragraph = this.document.createParagraph();
             paragraph.setIndentationLeft(250 * 5);
             paragraph.setNumID(numID);
             XWPFRun run = paragraph.createRun();
@@ -195,14 +195,14 @@ public class CurriculumModel1 extends GenerateCurriculum {
         }
 
         //Separator
-        this.addLineSeparator(document);
+        this.addLineSeparator();
     }
 
-    private void createFormationSection(XWPFDocument document, Curriculum curriculum) {
-        document.createParagraph();
+    private void createFormationSection(Curriculum curriculum) {
+        this.document.createParagraph();
         List<Formation> formations = curriculum.getFormations();
 
-        XWPFParagraph formationParagraph = document.createParagraph();
+        XWPFParagraph formationParagraph = this.document.createParagraph();
         formationParagraph.setIndentationLeft(249 * 5);
         formationParagraph.setIndentationFirstLine(-249 * 5);
 
@@ -253,14 +253,14 @@ public class CurriculumModel1 extends GenerateCurriculum {
             }
         }
 
-        this.addLineSeparator(document);
+        this.addLineSeparator();
     }
 
-    private void createLanguagesSection(XWPFDocument document, Curriculum curriculum) {
-        document.createParagraph();
+    private void createLanguagesSection(Curriculum curriculum) {
+        this.document.createParagraph();
         List<Language> languages = curriculum.getLanguages();
 
-        XWPFParagraph languageParagraph = document.createParagraph();
+        XWPFParagraph languageParagraph = this.document.createParagraph();
         languageParagraph.setIndentationLeft(249 * 5);
         languageParagraph.setIndentationFirstLine(-249 * 5);
         XWPFRun languageTitle = languageParagraph.createRun();
@@ -288,10 +288,10 @@ public class CurriculumModel1 extends GenerateCurriculum {
         }
     }
 
-    private void createExperienceSection(XWPFDocument document, Curriculum curriculum) {
+    private void createExperienceSection(Curriculum curriculum) {
         List<ProfessionalExperience> professionalExperiences = curriculum.getProfessionalExperiences();
 
-        XWPFRun languageTitle = document.createParagraph().createRun();
+        XWPFRun languageTitle = this.document.createParagraph().createRun();
         languageTitle.setFontFamily("Arial");
         languageTitle.setFontSize(11);
         languageTitle.setBold(true);
@@ -299,8 +299,8 @@ public class CurriculumModel1 extends GenerateCurriculum {
 
         for (ProfessionalExperience professionalExperience : professionalExperiences) {
             //First experience
-            document.createParagraph();
-            XWPFParagraph experienceParagraph = document.createParagraph();
+            this.document.createParagraph();
+            XWPFParagraph experienceParagraph = this.document.createParagraph();
             XWPFRun experienceJobText = experienceParagraph.createRun();
             experienceJobText.setFontFamily("Arial");
             experienceJobText.setFontSize(10);
@@ -327,7 +327,7 @@ public class CurriculumModel1 extends GenerateCurriculum {
             jobLocationText.setFontSize(10);
             jobLocationText.setText(professionalExperience.getLocation());
 
-            XWPFParagraph jobDescriptionParagraph = document.createParagraph();
+            XWPFParagraph jobDescriptionParagraph = this.document.createParagraph();
             jobDescriptionParagraph.setIndentationLeft(150 * 5);
             XWPFRun jobDescriptionText = jobDescriptionParagraph.createRun();
             jobDescriptionText.setFontFamily("Arial");
@@ -337,15 +337,15 @@ public class CurriculumModel1 extends GenerateCurriculum {
         }
     }
 
-    private void addLineSeparator(XWPFDocument document) {
+    private void addLineSeparator() {
         //Separator
-        XWPFRun separatorText = document.createParagraph().createRun();
+        XWPFRun separatorText = this.document.createParagraph().createRun();
         separatorText.setFontFamily("Arial");
         separatorText.setFontSize(10);
         separatorText.setText("_____________________________________________________________________________");
     }
 
     @Override
-    protected void createDocumentFooter(XWPFDocument document, Curriculum curriculum) {
+    protected void createDocumentFooter(Curriculum curriculum) {
     }
 }
