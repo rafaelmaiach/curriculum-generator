@@ -1,5 +1,9 @@
 package br.unesp.rc.curriculumGenerator.model;
 
+/**
+ * This class represents the Formations of the Curriculum Owner
+ * It may be: where they graduated, courses, etc
+ */
 public class Formation {
 
     private String name;
@@ -13,7 +17,6 @@ public class Formation {
     private String location;
 
     public Formation() {
-
     }
 
     public String getName() {
