@@ -12,7 +12,17 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class is used as a command to the frontend application to Download a Curriculum
+ */
 public class DownloadCurriculum implements ICommand {
+
+    /**
+     * Receives a POST Request with a Curriculum JSON, generate the File for the curriculum and returns to Frontend.
+     *
+     * @param httpExchange httpExchange
+     * @throws IOException IOException
+     */
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
         if (Helper.isRequestMethodOptions(httpExchange))

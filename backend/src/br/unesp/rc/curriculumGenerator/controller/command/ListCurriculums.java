@@ -13,13 +13,22 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This class is used as a command to the frontend application to get all Curriculum to a given user
+ */
 public class ListCurriculums implements ICommand {
 
+    /**
+     * Receives a GET Request with a "userId" parameter and returns all Curriculums owned by this user
+     *
+     * @param httpExchange httpExchange
+     * @throws IOException IOException
+     */
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
         if (Helper.isRequestMethodOptions(httpExchange))
             return;
-        
+
         int userId = 0;
         String JSONResponse = "";
 

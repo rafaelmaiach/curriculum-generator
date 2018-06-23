@@ -8,7 +8,17 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class with static helper methods
+ */
 public class Helper {
+
+    /**
+     * Gets the JSON inside the HttpExchange object
+     *
+     * @param httpExchange Object with JSON inside
+     * @return the JSON String
+     */
     public static String getJSONfromHttpExchange(HttpExchange httpExchange) {
         try {
             //We're assuming UTF-8
@@ -31,6 +41,11 @@ public class Helper {
         }
     }
 
+    /**
+     * Transform the URIQuery into a Map object
+     * @param query The URIQuery from a GET Request
+     * @return The Map object with all parameters from the GET Request
+     */
     public static Map<String, String> queryToMap(String query) {
         Map<String, String> result = new HashMap<String, String>();
         for (String param : query.split("&")) {

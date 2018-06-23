@@ -10,12 +10,22 @@ import com.sun.net.httpserver.HttpExchange;
 import java.io.IOException;
 import java.io.OutputStream;
 
+/**
+ * This class is used as a command to the frontend application to insert a New User to database.
+ */
 public class RegisterUser implements ICommand {
+
+    /**
+     * Receives a POST Request with a User JSON and inserts the User to database.
+     *
+     * @param httpExchange httpExchange
+     * @throws IOException IOException
+     */
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
         if (Helper.isRequestMethodOptions(httpExchange))
             return;
-        
+
         String JSONRequest = Helper.getJSONfromHttpExchange(httpExchange);
 
         //JSON from String to Object

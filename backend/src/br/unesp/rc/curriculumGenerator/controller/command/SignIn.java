@@ -12,12 +12,22 @@ import com.sun.net.httpserver.HttpExchange;
 import java.io.IOException;
 import java.io.OutputStream;
 
+/**
+ * This class is used as a command to the frontend application to Authenticate the user
+ */
 public class SignIn implements ICommand {
+
+    /**
+     * Receives a POST Request with a Access JSON and verify if the Access already exists in the database
+     *
+     * @param httpExchange httpExchange
+     * @throws IOException IOException
+     */
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
         if (Helper.isRequestMethodOptions(httpExchange))
             return;
-        
+
         String JSONRequest = Helper.getJSONfromHttpExchange(httpExchange);
         String JSONResponse = "";
 

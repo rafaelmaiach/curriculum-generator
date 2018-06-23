@@ -10,12 +10,22 @@ import com.sun.net.httpserver.HttpExchange;
 import java.io.IOException;
 import java.io.OutputStream;
 
+/**
+ * This class is used as a command to the frontend application to insert a new curriculum to database.
+ */
 public class NewCurriculum implements ICommand {
+
+    /**
+     * Receives a POST Request with a Curriculum JSON and inserts the Curriculum to database.
+     *
+     * @param httpExchange httpExchange
+     * @throws IOException IOException
+     */
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
         if (Helper.isRequestMethodOptions(httpExchange))
             return;
-        
+
         String JSONRequest = Helper.getJSONfromHttpExchange(httpExchange);
 
         ObjectMapper objectMapper = new ObjectMapper();

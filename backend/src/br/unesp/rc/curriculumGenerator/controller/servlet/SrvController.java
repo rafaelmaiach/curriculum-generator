@@ -6,7 +6,15 @@ import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
+/**
+ * All possible Commands must be listed in this class
+ */
 public class SrvController {
+    /**
+     * Creates the commands and starts the server
+     *
+     * @throws IOException IOException
+     */
     public void startServer() throws IOException {
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
         server.createContext("/registerUser", new RegisterUser());
