@@ -12,7 +12,6 @@
     <orderEntry type="library" name="poi-3.17" level="project" />
     <orderEntry type="library" name="curvesapi-1.04" level="project" />
     <orderEntry type="library" name="jackson-annotations-2.9.5" level="project" />
-    <orderEntry type="library" name="javax.annotation" level="project" />
     <orderEntry type="library" name="mysql-connector-java-5.1.23-bin" level="project" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit4">
