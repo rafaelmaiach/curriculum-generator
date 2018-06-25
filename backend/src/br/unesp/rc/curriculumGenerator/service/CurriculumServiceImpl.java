@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class CurriculumServiceImpl implements CurriculumService {
-    CurriculumDAO curriculumDAO;
+    private CurriculumDAO curriculumDAO;
 
     public CurriculumServiceImpl() {
         this.curriculumDAO = FactoryDAO.getCurriculumDAO();

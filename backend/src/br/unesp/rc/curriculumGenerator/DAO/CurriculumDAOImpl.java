@@ -47,22 +47,22 @@ public class CurriculumDAOImpl implements CurriculumDAO {
                     curriculumReturn.setLinkedin(resultSet.getString(11));
 
                     // Select Ability
-                    AbilityDAO abilityDAO = new AbilityDAOImpl();
+                    AbilityDAO abilityDAO = FactoryDAO.getAbilityDAO();
                     List<Ability> abilityList = abilityDAO.selectAbilityByCurriculumId(curriculumReturn.getIdCurriculum());
                     curriculumReturn.setAbilities(abilityList);
 
                     // Select Formation
-                    FormationDAO formationDAO = new FormationDAOImpl();
+                    FormationDAO formationDAO = FactoryDAO.getFormationDAO();
                     List<Formation> formationList = formationDAO.selectFormationByCurriculumId(curriculumReturn.getIdCurriculum());
                     curriculumReturn.setFormations(formationList);
 
                     // Select Language
-                    LanguageDAO languageDAO = new LanguageDAOImpl();
+                    LanguageDAO languageDAO = FactoryDAO.getLanguageDAO();
                     List<Language> languageList = languageDAO.selectLanguageByCurriculumId(curriculumReturn.getIdCurriculum());
                     curriculumReturn.setLanguages(languageList);
 
                     // Select ProfessionalExperience
-                    ProfessionalExperienceDAO professionalExperienceDAO = new ProfessionalExperienceDAOImpl();
+                    ProfessionalExperienceDAO professionalExperienceDAO = FactoryDAO.getProfessionalExperienceDAO();
                     List<ProfessionalExperience> professionalExperienceList = professionalExperienceDAO.selectProfessionalExperienceByCurriculumId(curriculumReturn.getIdCurriculum());
                     curriculumReturn.setProfessionalExperiences(professionalExperienceList);
 
