@@ -4,12 +4,14 @@ import CurriculumBox from './CurriculumBox';
 import { listCurriculums } from '../../api';
 
 /**
+ * @override
  * @class CurriculumForm
  */
 class CurriculumForm extends Component {
   state = {
     userId: null,
     curriculumsList: null,
+    menu: 'list', // 'list' or 'form'
   }
 
   /**
@@ -30,6 +32,17 @@ class CurriculumForm extends Component {
     );
   }
 
+  setMenu = (type) => {
+    this.setState(
+      () => ({ menu: type }),
+      () => {
+        if (this.state.menu === 'list') {
+          this.getCurriculums();
+        }
+      },
+    );
+  }
+
   createCurriculumBox = () => this.state.curriculumsList.map(data =>
     <CurriculumBox key={data.idCurriculum} data={data} />);
 
@@ -40,10 +53,31 @@ class CurriculumForm extends Component {
    * @returns {HTML} CurriculumForm container
    */
   render() {
-    const { curriculumsList } = this.state;
+    const { curriculumsList, menu } = this.state;
+
     return (
-      <div className="curriculum-form-container">
-        {curriculumsList ? this.createCurriculumBox() : null}
+      <div className="curriculum-menu-container">
+        <div className="curriculum-header-container">
+          <button
+            className="curriculum-header-container-button"
+            onClick={() => this.setMenu('list')}
+          >
+            List Curriculums
+          </button>
+          <button
+            className="curriculum-header-container-button"
+            onClick={() => this.setMenu('form')}
+          >
+            New Curriculum
+          </button>
+        </div>
+        <div className="curriculum-content-container">
+          {
+            menu === 'list' && curriculumsList ?
+              this.createCurriculumBox() :
+              null
+          }
+        </div>
       </div>
     );
   }

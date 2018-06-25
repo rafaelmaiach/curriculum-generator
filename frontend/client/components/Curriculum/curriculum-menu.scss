@@ -1,0 +1,40 @@
+.curriculum-menu-container {
+  width: 100%;
+  height: 100%;
+
+  .curriculum-header-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 10%;
+    background-color: darken($primary-color-blue, 15);
+
+    &-button {
+      width: 20%;
+      margin: 15px 15px;
+      border: none;
+      font-size: 16px;
+      background-color: darken($primary-color-blue, 10);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    &-button:hover {
+      background-color: darken($primary-color-blue, 5);
+    }
+  }
+
+  .curriculum-content-container {
+    display: flex;
+    width: 100%;
+    height: 90%;
+    padding: 30px;
+  
+    .curriculum-box-container:last-child {
+      margin-right: 0px;
+    }
+  }
+}
+
+
