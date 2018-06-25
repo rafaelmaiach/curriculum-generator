@@ -59,7 +59,31 @@ const createPromiseFor = ({ path, params, method }) => {
   });
 };
 
+const createPromiseForDocument = ({ path, params, method }) => {
+  const paramsCopy = params ? { ...params } : null;
+  const defaultParams = {
+    method: method || 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const url = createUrlFrom(path);
+
+  return new Promise((resolve, reject) => {
+    fetch(url, paramsCopy || defaultParams)
+      .then((response) => {
+        if (response.ok) {
+          resolve(response.blob());
+        }
+        reject(response);
+      })
+      .catch(error => reject(error));
+  });
+};
+
 module.exports = {
   getCustomFetchConfigUsing,
   createPromiseFor,
+  createPromiseForDocument,
 };

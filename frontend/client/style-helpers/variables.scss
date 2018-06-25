@@ -3,6 +3,8 @@ $primary-color-blue: #0078d7;
 $primary-color-green: #00ab6c;
 $primary-color-red: #b33e3e;
 
+$secondary-color-blue: darken($primary-color-blue, 10);
+
 // base sizes
 $base-font-size: 14px;
 

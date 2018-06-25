@@ -1,6 +1,7 @@
 import {
   getCustomFetchConfigUsing,
   createPromiseFor,
+  createPromiseForDocument,
 } from './utils';
 
 /**
@@ -28,6 +29,18 @@ const signIn = (params) => {
 };
 
 /**
+ * @method downloadCurriculum
+ * @description download a curriculum
+ * @param {Object} params - curriculum params
+ * @returns {Promise} Word document
+ */
+const downloadCurriculum = (params) => {
+  const path = '/downloadCurriculum';
+  const options = getCustomFetchConfigUsing(params);
+  return createPromiseForDocument({ path, params: options });
+};
+
+/**
  * @method listCurriculums
  * @description Sign in to site
  * @param {Number} userId - User id
@@ -43,4 +56,5 @@ module.exports = {
   registerUser,
   signIn,
   listCurriculums,
+  downloadCurriculum,
 };
