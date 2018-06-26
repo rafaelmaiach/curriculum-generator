@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import CurriculumBox from './CurriculumBox';
+import CurriculumPreviewBox from './CurriculumPreviewBox';
 import { listCurriculums } from '../../api';
 
 /**
@@ -43,8 +43,8 @@ class CurriculumForm extends Component {
     );
   }
 
-  createCurriculumBox = () => this.state.curriculumsList.map(data =>
-    <CurriculumBox key={data.idCurriculum} data={data} />);
+  createCurriculumPreviewBox = () => this.state.curriculumsList.map(data =>
+    <CurriculumPreviewBox key={data.idCurriculum} data={data} />);
 
 
   /**
@@ -84,7 +84,7 @@ class CurriculumForm extends Component {
         <div className="curriculum-content-container">
           {
             menu === 'list' && curriculumsList ?
-              this.createCurriculumBox() :
+              this.createCurriculumPreviewBox() :
               null
           }
         </div>
