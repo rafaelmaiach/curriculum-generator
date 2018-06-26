@@ -1,4 +1,4 @@
-package br.unesp.rc.curriculumGenerator.demo;
+package br.unesp.rc.curriculumGenerator.main;
 
 import br.unesp.rc.curriculumGenerator.controller.servlet.SrvController;
 
