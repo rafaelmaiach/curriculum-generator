@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import CurriculumPreviewBox from './CurriculumPreviewBox';
+import CurriculumFormContainer from './CurriculumFormContainer';
 import { listCurriculums } from '../../api';
 
 /**
@@ -55,6 +56,10 @@ class CurriculumForm extends Component {
   render() {
     const { curriculumsList, menu } = this.state;
 
+    if (!curriculumsList) {
+      return null;
+    }
+
     return (
       <div className="curriculum-menu-container">
         <div className="curriculum-header-container">
@@ -83,9 +88,9 @@ class CurriculumForm extends Component {
         </div>
         <div className="curriculum-content-container">
           {
-            menu === 'list' && curriculumsList ?
+            menu === 'list' ?
               this.createCurriculumPreviewBox() :
-              null
+              <CurriculumFormContainer idUser={this.state.userId} />
           }
         </div>
       </div>
