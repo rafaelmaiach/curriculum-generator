@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 import Auth from './Auth';
 
@@ -12,6 +12,7 @@ class LoginFormSignIn extends Component {
     username: '',
     password: '',
     error: false,
+    userId: null,
   }
 
   handleInput = ({ target }) => {
@@ -37,8 +38,7 @@ class LoginFormSignIn extends Component {
       const userId = authInstance.getUserId();
 
       if (userId) {
-        window.userId = userId;
-        this.props.history.push('/curriculum');
+        this.setState(() => ({ userId }));
       } else {
         this.setState(() => ({ error: true }));
       }
@@ -55,7 +55,12 @@ class LoginFormSignIn extends Component {
   * @returns {HTMLElement} LoginFormSignIn component
   */
   render() {
-    const { error } = this.state;
+    const { error, userId } = this.state;
+
+    if (userId) {
+      return <Redirect to={`/curriculum/${userId}`} />;
+    }
+
     return (
       <div className="login-form__container">
         <div className="form-input-container">

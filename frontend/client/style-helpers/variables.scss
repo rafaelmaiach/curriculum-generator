@@ -4,6 +4,9 @@ $primary-color-green: #00ab6c;
 $primary-color-red: #b33e3e;
 
 $secondary-color-blue: darken($primary-color-blue, 10);
+$secondary-color-green: darken($primary-color-green, 10);
+
+$third-color-blue: darken($primary-color-blue, 15);
 
 // base sizes
 $base-font-size: 14px;

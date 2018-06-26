@@ -1,36 +1,34 @@
 .curriculum-box-container {
   display: flex;
   flex-direction: column;
-  width: 250px;
-  height: 200px;
+  width: 35%;
+  height: 25%;
   margin: 0px 20px;
 
   .curriculum-box-info {
-    border: 1px solid black;
     border-bottom: 0px;
-    background-color: white;
+    background-color: #f3f3f3;
     color: black;
     width: 100%;
     height: 85%;
 
     &-title {
-      text-align: center;
       font-weight: bold;
       font-size: 18px;
-      padding-top: 5px;
+      padding: 10px 0px 0px 10px;
     }
 
     &-text {
-      padding: 5px;
+      padding: 10px;
       font-size: 16px;
     }
   }
 
   .curriculum-box-download {
     width: 100%;
-    height: 15%;
-    background-color: lighten($secondary-color-blue, 20);
-    border: 1px solid black;
+    height: 20%;
+    background-color: $primary-color-green;
+    border: none;
     font-size: 16px;
     color: white;
     font-weight: bold;
@@ -38,6 +36,6 @@
   }
 
   .curriculum-box-download:hover {
-    background-color: $primary-color-blue;
+    background-color: $secondary-color-green;
   }
 }

@@ -10,7 +10,7 @@ const getDocument = (result) => {
   // Create a DOMString representing the blob and point the link element towards it
   const url = window.URL.createObjectURL(result);
   a.href = url;
-  a.download = 'myFile.docx';
+  a.download = 'curriculum.docx';
   // programatically click the link to trigger the download
   a.click();
   // release the reference to the file by revoking the Object URL

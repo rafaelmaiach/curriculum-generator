@@ -21,7 +21,7 @@ class App extends Component {
         <Toastr key="appToastr" />
         <Switch>
           <Route exact path="/" component={LoginScreen} />
-          <Route path="/curriculum" component={CurriculumMenu} />
+          <Route path="/curriculum/:userId" component={CurriculumMenu} />
         </Switch>
       </Fragment>
     );

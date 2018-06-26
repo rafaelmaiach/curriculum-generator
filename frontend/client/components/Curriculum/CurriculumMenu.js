@@ -23,7 +23,7 @@ class CurriculumForm extends Component {
 
   getCurriculums = () => {
     this.setState(
-      () => ({ userId: window.userId }),
+      () => ({ userId: this.props.match.params.userId }),
       () => {
         listCurriculums(this.state.userId)
           .then(result => this.setState(() => ({ curriculumsList: result })))
@@ -59,16 +59,26 @@ class CurriculumForm extends Component {
       <div className="curriculum-menu-container">
         <div className="curriculum-header-container">
           <button
-            className="curriculum-header-container-button"
+            className={
+              `
+              curriculum-header-container-button
+              ${menu === 'list' ? 'active' : ''}
+              `
+            }
             onClick={() => this.setMenu('list')}
           >
-            List Curriculums
+            List
           </button>
           <button
-            className="curriculum-header-container-button"
+            className={
+              `
+              curriculum-header-container-button
+              ${menu === 'form' ? 'active' : ''}
+              `
+            }
             onClick={() => this.setMenu('form')}
           >
-            New Curriculum
+            New
           </button>
         </div>
         <div className="curriculum-content-container">
