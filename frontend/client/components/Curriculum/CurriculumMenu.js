@@ -63,18 +63,18 @@ class CurriculumForm extends Component {
     return (
       <div className="curriculum-menu-container">
         <div className="curriculum-header-container">
-          <button
+          <div
             className={
               `
-              curriculum-header-container-button
-              ${menu === 'list' ? 'active' : ''}
-              `
+            curriculum-header-container-button
+            ${menu === 'list' ? 'active' : ''}
+            `
             }
             onClick={() => this.setMenu('list')}
           >
             List
-          </button>
-          <button
+          </div>
+          <div
             className={
               `
               curriculum-header-container-button
@@ -84,7 +84,7 @@ class CurriculumForm extends Component {
             onClick={() => this.setMenu('form')}
           >
             New
-          </button>
+          </div>
         </div>
         <div className="curriculum-content-container">
           {
