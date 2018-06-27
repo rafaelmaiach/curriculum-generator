@@ -267,14 +267,18 @@ class CurriculumFormContainer extends Component {
     return (
       <div className="curriculum-form__container">
         <div className="curriculum-top-container">
-          <div className="curriculum-form-box">
-            {inputsLeft}
-          </div>
-          <div className="curriculum-form-box">
-            {inputsRight}
+          <div className="curriculum-personal">PERSONAL INFORMATION</div>
+          <div className="curriculum-top-form">
+            <div className="curriculum-form-box">
+              {inputsLeft}
+            </div>
+            <div className="curriculum-form-box">
+              {inputsRight}
+            </div>
           </div>
         </div>
         <div className="curriculum-bottom-container">
+          <div className="curriculum-personal">PROFESSIONAL INFORMATION</div>
           <div className="form-input-container">
             <div className="form-input">Objective</div>
             <input

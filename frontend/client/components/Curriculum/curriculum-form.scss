@@ -8,30 +8,35 @@
   
     .curriculum-top-container {
       display: flex;
+      flex-direction: column;
       width: 100%;
   
-      .curriculum-form-box {
-        width: 50%;
+      .curriculum-top-form {
+        display: flex;
 
-        .form-input-container {
-          display: flex;
-          flex-direction: column;
-          padding: 10px 10px;
-          width: 100%;
-
-          div {
-            width: 80%;
-            font-size: 16px;
-            color: white;
-            font-weight: bold;
-            padding: 5px 0px;
-          }
-    
-          input {
-            width: 80%;
-            padding: 5px 10px;
-            border: none;
-            font-size: 12px;
+        .curriculum-form-box {
+          width: 50%;
+  
+          .form-input-container {
+            display: flex;
+            flex-direction: column;
+            padding: 10px 10px;
+            width: 100%;
+  
+            div {
+              width: 100%;
+              font-size: 16px;
+              color: white;
+              font-weight: bold;
+              padding: 5px 0px;
+            }
+      
+            input {
+              width: 100%;
+              padding: 5px 10px;
+              border: none;
+              font-size: 12px;
+            }
           }
         }
       }
@@ -52,7 +57,7 @@
         width: 100%;
 
         div {
-          width: 80%;
+          width: 100%;
           font-size: 16px;
           color: white;
           font-weight: bold;
@@ -60,7 +65,7 @@
         }
   
         input, textarea {
-          width: 80%;
+          width: 100%;
           padding: 5px 10px;
           border: none;
           font-size: 12px;
@@ -75,8 +80,8 @@
     .formation-text {
       font-size: 20px;
       font-weight: bold;
-      margin-bottom: 20px;
       padding-left: 10px;
+      color: darken($third-color-blue, 10);
     }
   }
 
@@ -85,18 +90,32 @@
     height: 100px;
 
     button {
+      &:first-of-type {
+        background-color: $primary-color-green;
+      }
+
       width: 20%;
       padding: 7px;
       margin-top: 20px;
       margin-right: 20px;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: bold;
       align-self: center;
       border: #DADADA;
       color: white;
-      border-radius: 2px;
-      background-color: $primary-color-green;
+      border-radius: 0;
       cursor: pointer;
+      padding: 10px 5px;
+      background-color: $third-color-blue;
     }
+
   }
+}
+
+.curriculum-personal {
+  font-size: 20px;
+  font-weight: bold;
+  padding-left: 10px;
+  color: darken($third-color-blue, 10);
+  margin-top: 20px;
 }
