@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+import { saveCurriculum } from '../../api';
+
+import { showToastr } from '../Toastr/Toastr';
+
 /**
  * @override
  * @class
@@ -99,8 +103,48 @@ class CurriculumFormContainer extends Component {
     </div>
   );
 
-  saveForm = () => {
+  convertAbilitites = abilities =>
+    abilities
+      .split(';')
+      .map(skill => ({
+        name: skill.trim(),
+      }));
 
+  convertLanguages = (languages) => {
+    const newLanguages = [];
+
+    languages
+      .split(';')
+      .map(lang =>
+        lang
+          .split(':'))
+      .forEach((e) => {
+        newLanguages.push({
+          name: e[0].trim(),
+          languageProeficiency: e[1].trim(),
+        });
+      });
+
+    return newLanguages;
+  }
+
+  saveForm = () => {
+    const params = { ...this.state };
+    params.abilities = this.convertAbilitites(params.abilities);
+    params.languages = this.convertLanguages(params.languages);
+    params.formations = [params.formations];
+    params.professionalExperiences = [params.professionalExperiences];
+    params.user.idUser = this.props.idUser;
+
+    saveCurriculum(params)
+      .then(() => {
+        showToastr('CURRICULUM CREATED!', 'success');
+        this.clearForm();
+      })
+      .catch((e) => {
+        showToastr('AN ERROR OCCURRED!', 'error');
+        console.log(e.message);
+      });
   }
 
   completeForm = () => {

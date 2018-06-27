@@ -51,10 +51,23 @@ const listCurriculums = (userId) => {
   return createPromiseFor({ path });
 };
 
+/**
+ * @method newCurriculum
+ * @description Save a curriculum
+ * @param {Object} params - curriculum params
+ * @returns {Promise} Curriculum created
+ */
+const saveCurriculum = (params) => {
+  const path = '/newCurriculum';
+  const options = getCustomFetchConfigUsing(params);
+  return createPromiseForDocument({ path, params: options });
+};
+
 
 module.exports = {
   registerUser,
   signIn,
   listCurriculums,
   downloadCurriculum,
+  saveCurriculum,
 };
