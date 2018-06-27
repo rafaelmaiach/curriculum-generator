@@ -44,8 +44,18 @@ class CurriculumForm extends Component {
     );
   }
 
-  createCurriculumPreviewBox = () => this.state.curriculumsList.map(data =>
-    <CurriculumPreviewBox key={data.idCurriculum} data={data} />);
+  createCurriculumPreviewBox = () => {
+    const { curriculumsList } = this.state;
+
+    if (!curriculumsList) {
+      return null;
+    }
+
+    const list = this.state.curriculumsList.map(data =>
+      <CurriculumPreviewBox key={data.idCurriculum} data={data} />);
+
+    return list;
+  }
 
 
   /**
@@ -54,11 +64,7 @@ class CurriculumForm extends Component {
    * @returns {HTML} CurriculumForm container
    */
   render() {
-    const { curriculumsList, menu } = this.state;
-
-    if (!curriculumsList) {
-      return null;
-    }
+    const { menu } = this.state;
 
     return (
       <div className="curriculum-menu-container">
