@@ -1,0 +1,9 @@
+br.unesp.rc.curriculumGenerator.DAO
+br.unesp.rc.curriculumGenerator.apachepoi.utils
+br.unesp.rc.curriculumGenerator.controller.command
+br.unesp.rc.curriculumGenerator.controller.helper
+br.unesp.rc.curriculumGenerator.controller.servlet
+br.unesp.rc.curriculumGenerator.main
+br.unesp.rc.curriculumGenerator.model
+br.unesp.rc.curriculumGenerator.service
+br.unesp.rc.curriculumGenerator.utils
