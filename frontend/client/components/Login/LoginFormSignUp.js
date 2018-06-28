@@ -64,8 +64,11 @@ class LoginFormSignUp extends Component {
     this.setState(() => returnObj);
   }
 
-  handleSignUp = (error, message) => {
-    if (error) {
+  handleSignUp = (error, result = null, message = null) => {
+    if (result === -1) {
+      showToastr('USER ALREADY REGISTERED', 'error');
+      console.log('Error on registerUser: User already registered');
+    } else if (error) {
       showToastr('ERROR REGISTER!', 'error');
       console.log(`Error on registerUser: ${message}`);
     } else {
@@ -100,8 +103,8 @@ class LoginFormSignUp extends Component {
       const registerInfo = this.mapRegisterInfo();
 
       registerUser(registerInfo)
-        .then(() => this.handleSignUp(false))
-        .catch(error => this.handleSignUp(true, error.message));
+        .then(result => this.handleSignUp(false, result))
+        .catch(error => this.handleSignUp(true, null, error.message));
     } else {
       this.setState(() => ({ error: true }));
     }
